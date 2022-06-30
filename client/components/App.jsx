@@ -7,12 +7,11 @@ class App extends React.Component {
 
   render() {
     return (
-    <><h1>Hello from App.jsx!</h1>
+    <><h1>Recycable Items</h1>
       <Canvas />
     </>
     );
   }
 }
-
 
 export default App;
