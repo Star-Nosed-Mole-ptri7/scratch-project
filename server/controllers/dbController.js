@@ -19,6 +19,7 @@ dbController.getTest = (req, res, next) => {
     });
 };
 
+// For reference
 // dbController.saveAlgo = (req, res, next) => {
 //   pool.query(`INSERT INTO algos (algostring) VALUES ('${req.body.data}')`)
 //   .then((data) => {
