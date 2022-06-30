@@ -1,7 +1,6 @@
 {
   "name": "solo-project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
@@ -32,5 +31,14 @@
     "style-loader": "^3.3.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Star-Nosed-Mole-ptri7/scratch-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Star-Nosed-Mole-ptri7/scratch-project/issues"
+  },
+  "homepage": "https://github.com/Star-Nosed-Mole-ptri7/scratch-project#readme",
+  "description": ""
 }
