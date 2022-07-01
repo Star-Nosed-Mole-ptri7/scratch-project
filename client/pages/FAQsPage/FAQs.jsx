@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import jsonFAQ from './faq.json';
-import './FAQsPage.css'
+import './FAQs.css'
 
 function FAQsPage(props) {
   const faqItems = [];
