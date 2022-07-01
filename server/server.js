@@ -12,10 +12,10 @@ app.get('/build/bundle.js', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '..', 'build', 'bundle.js'));
 });
 
-app.get('/', (req, res) => {
+// app.use('/api', dbRouter);
+
+app.get('/*', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
-
-app.use('/api', dbRouter);
 
 app.listen(3000);
