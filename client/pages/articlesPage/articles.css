@@ -1,0 +1,21 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.articleTitle {
+  display: inline-block;
+  margin: 0px;
+}
+
+.articleDate {
+  font-size: 12px;
+}
+
+.articleSummary {
+  width: 80%;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
