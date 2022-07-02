@@ -1,0 +1,79 @@
+.TeamContainer{
+    display:grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 3em;
+}
+
+/* GOAL'S CONTAINER */
+.goalContainer{
+    display:grid;
+    grid-template-columns: repeat(2);
+    grid-gap: 1em;
+}
+
+.goalContainer #text{
+    right: 100px;
+    float: right;
+}
+
+.goalContainer #img{
+    margin-top: 50px;
+    margin-left: 50px;
+    width:500px; height:500px;
+    box-shadow: 1px 1px 12px rgb(128, 128, 128);
+}
+
+/* ANDY'S CONTAINER */
+.andyContainer #name{
+}
+
+.andyContainer #text{
+}
+
+.andyContainer #img{
+    width:50px; height:50px;
+}
+
+/* BRANDON'S CONTAINER */
+.brandonContainer #name{
+}
+
+.brandonContainer #text{
+}
+
+.brandonContainer #img{
+    width:50px; height:50px;
+}
+
+/* JESSICA'S CONTAINER */
+.jessicaContainer #name{
+}
+
+.jessicaContainer #text{
+}
+
+.jessicaContainer #img{
+    width:50px; height:50px;
+}
+
+/* MARIO'S CONTAINER */
+.marioContainer #name{
+}
+
+.andyContainer #text{
+}
+
+.marioContainer #img{
+    width:50px; height:50px;
+}
+
+/* MARK'S CONTAINER */
+.markContainer #name{
+}
+
+.markContainer #text{
+}
+
+.markContainer #img{
+    width:50px; height:50px;
+}
