@@ -16,7 +16,7 @@ class Articles extends React.Component {
       );
     }
 
-    return (<div>
+    return (<div className='articles-div'>
       <h1>Articles</h1>
       {articles}
     </div>)

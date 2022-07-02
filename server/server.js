@@ -8,9 +8,7 @@ const dbRouter = require('./routes/dbRouter');
 
 app.use(express.json());
 
-app.get('/build/bundle.js', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '..', 'build', 'bundle.js'));
-});
+app.use('/build', express.static('./build'));
 
 // app.use('/api', dbRouter);
 

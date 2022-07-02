@@ -3,21 +3,35 @@ import jsonFAQ from './faq.json';
 import './FAQs.css'
 
 function FAQsPage(props) {
+  const [openQuestion, setOpenQuestion] = useState(1);
+
   const faqItems = [];
-  jsonFAQ.forEach(item => {
+  jsonFAQ.forEach((item, i) => {
     faqItems.push(
       <>
-      <details>
-        <summary className="faqQuestion">{item.question}</summary>
+      <details
+        className="faq-details"
+        onClick={(e) => {
+          e.preventDefault();
+          setOpenQuestion(i);
+        }}
+        open={openQuestion === i}
+      >
+        <summary className={`faq-question${openQuestion === i ? ' open-question' : ''}`}>{item.question}</summary>
         {item.answer}
       </details>
       </>
     );
   });
   return (
-    <div>
+    <div className="faq-div">
       <h1>FAQ</h1>
-      {faqItems}
+      <p className="faqs-summary">
+        Frequently Asked Questions:
+      </p>
+      <div className="faq-questions">
+        {faqItems}
+      </div>
     </div>
   );
 }

@@ -5,14 +5,11 @@
 }
 
 
-
-
 /* This is the Navigation Bar */
 
 body {
   margin: 0px;
   font-family: 'Roboto', sans-serif;
-  color: rgb(255, 255, 255);
   font-size: 20px;
 }
 /* ^^This removes the default Margin created by the browser which is 6px */

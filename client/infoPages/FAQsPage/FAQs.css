@@ -1,3 +1,34 @@
-.faqQuestion::marker {
-  content: "-"
+
+
+.faq-div {
+  margin-left: 10vw;
+  background-image: url("../../static/images/greenWaterPlant.jpg");
 }
+
+.faqs-summary {
+  font-size: 22px;
+}
+
+.faq-questions {
+  margin-left: 15%;
+}
+
+.faq-details {
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.faq-question {
+  font-size: 28px;
+  margin-left: -30px;
+  margin-bottom: 20px;
+}
+
+.open-question {
+  color: rgb(76, 147, 175);
+  font-weight: bold;
+}
+
+/* .faq-question::marker {
+  content: "-"
+} */
