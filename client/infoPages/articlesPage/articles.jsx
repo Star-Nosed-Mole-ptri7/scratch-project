@@ -17,8 +17,12 @@ class Articles extends React.Component {
     }
 
     return (<div className='articles-div'>
-      <h1>Articles</h1>
-      {articles}
+      <div className='articles-title'>
+        <h1>Articles</h1>
+      </div>
+      <div className='articles-items'>
+        {articles}
+      </div>
     </div>)
   }
 }

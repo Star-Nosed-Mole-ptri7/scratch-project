@@ -3,7 +3,7 @@ import jsonFAQ from './faq.json';
 import './FAQs.css'
 
 function FAQsPage(props) {
-  const [openQuestion, setOpenQuestion] = useState(1);
+  const [openQuestion, setOpenQuestion] = useState(-1);
 
   const faqItems = [];
   jsonFAQ.forEach((item, i) => {
@@ -25,10 +25,12 @@ function FAQsPage(props) {
   });
   return (
     <div className="faq-div">
-      <h1>FAQ</h1>
-      <p className="faqs-summary">
-        Frequently Asked Questions:
-      </p>
+      <div className="page-title">
+        <h1>FAQ</h1>
+        <p className="faqs-summary">
+          Frequently Asked Questions:
+        </p>
+      </div>
       <div className="faq-questions">
         {faqItems}
       </div>
