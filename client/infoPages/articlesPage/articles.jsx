@@ -1,24 +1,51 @@
 import React from 'react';
 import ArticleItem from './articleItem.jsx';
 import './articles.css';
-import jsonArticles from './sampleArticles.json' // Where does this data come from?
 
 class Articles extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {articles: []};
+  }
+
+  componentDidMount() {
+    this.grabArticles('recycling');
+  }
+
+  grabArticles(query) {
+    var url = 'https://newsapi.org/v2/everything?' +
+    `q=${query}&` +
+    'sortBy=published&' +
+    'searchIn=title&' +
+    'pageSize=10&' +
+    'language=en&' +
+    'apiKey=a85866a923434952b2da0b51bea08454';
+
+    var req = new Request(url);
+
+    fetch(req)
+      .then(res => res.json())
+      .then(data => this.setState({articles: data.articles}));
+  }
 
   render() {
     const articles = [];
-    for (let i = 0; i < jsonArticles.length; i++) {
+    for (let i = 0; i < this.state.articles.length; i++) {
       articles.push(
         <ArticleItem
           key={i}
-          articleData={jsonArticles[i]}
+          articleData={this.state.articles[i]}
         />
       );
     }
 
-    return (<div>
-      <h1>Articles</h1>
-      {articles}
+    return (<div className='articles-div'>
+      <div className='articles-title'>
+        <h1>Articles</h1>
+      </div>
+      <div className='articles-items'>
+        {articles}
+      </div>
     </div>)
   }
 }
