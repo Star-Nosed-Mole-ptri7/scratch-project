@@ -11,11 +11,7 @@
   
   /* Bottom right text */
   .overlay {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    bottom: 50%;
-    right: 50%;
+    text-align: center;
 
     background-color: rgb(151, 158, 155);
     opacity: .6;
