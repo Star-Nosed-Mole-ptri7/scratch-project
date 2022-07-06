@@ -17,6 +17,13 @@
   margin-left: 10vw;
 }
 
+.article-image {
+  height: 80px;
+  width: 80px;
+  float: left;
+  margin-right: 10px;
+}
+
 .articles-items a {
   text-decoration: none;
   color: black;
