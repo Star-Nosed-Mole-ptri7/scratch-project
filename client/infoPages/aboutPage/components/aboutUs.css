@@ -1,79 +1,136 @@
+
 .TeamContainer{
     display:grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 3em;
+    grid-template-rows: repeat(2,.5fr);
+    grid-gap: 10em;
+    
 }
 
 /* GOAL'S CONTAINER */
 .goalContainer{
     display:grid;
-    grid-template-columns: repeat(2);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
+    margin-bottom: 250px;
 }
 
 .goalContainer #text{
-    right: 100px;
-    float: right;
 }
 
 .goalContainer #img{
-    margin-top: 50px;
-    margin-left: 50px;
-    width:500px; height:500px;
+    margin-left: 150px;
+    width:700px; height:700px;
     box-shadow: 1px 1px 12px rgb(128, 128, 128);
 }
 
 /* ANDY'S CONTAINER */
-.andyContainer #name{
+#andyName{
+    text-align: center;
+}
+
+.andyContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .andyContainer #text{
+    margin-left: 150px;
 }
 
 .andyContainer #img{
-    width:50px; height:50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
 }
 
 /* BRANDON'S CONTAINER */
-.brandonContainer #name{
+
+#brandonName{
+    text-align: center;
+}
+
+.brandonContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .brandonContainer #text{
+    margin-left: 150px;
 }
 
 .brandonContainer #img{
-    width:50px; height:50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
 }
 
-/* JESSICA'S CONTAINER */
-.jessicaContainer #name{
+
+
+#jessicaName{
+    text-align: center;
+}
+
+.jessicaContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .jessicaContainer #text{
+    margin-left:150px
 }
 
 .jessicaContainer #img{
-    width:50px; height:50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
 }
 
-/* MARIO'S CONTAINER */
-.marioContainer #name{
+
+
+
+#marioName{
+    text-align: center;
 }
 
-.andyContainer #text{
+
+.marioContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marioContainer #text{
+    margin-left: 150px;
 }
 
 .marioContainer #img{
-    width:50px; height:50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
 }
 
-/* MARK'S CONTAINER */
-.markContainer #name{
+
+
+
+#markName{
+    text-align: center;
+}
+
+.markContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .markContainer #text{
+    margin-left: 150px;
 }
 
 .markContainer #img{
-    width:50px; height:50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
 }
