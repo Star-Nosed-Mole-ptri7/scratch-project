@@ -7,7 +7,6 @@ const pool = new Pool({
 const userController = {};
 
 userController.getTest = (req, res, next) => {
-  // pool.query('SELECT * FROM algos ORDER BY id')ß
   pool.query('SELECT * FROM "user"')
     .then((data) => {
       console.log(data.rows);
@@ -19,16 +18,14 @@ userController.getTest = (req, res, next) => {
     });
 };
 
-
 userController.createUser = (req, res, next) => {
 
-  // // const {user_id, first_name, last_name, user_name, password, location_id} = req.body;
-  // const values = [user_id, first_name, last_name, user_name, password, location_id];
-  // const text = 'INSERT INTO "user" (user_id, first_name, last_name, user_name, password, location_id)' +
-  //               `VALUES ('2', 'zuri', 'molina', 'zuzu', 'imapup', '11209')`;
+  const {user_id, first_name, last_name, user_name, password, location} = req.body;
+  const values = [user_id, first_name, last_name, user_name, password, location];
+  const text = 'INSERT INTO "user" (user_id, first_name, last_name, user_name, password, location)' +
+                `VALUES ($1, $2, $3, $4, $5, $6)`;
 
-  pool.query('INSERT INTO "user" (user_id, first_name, last_name, user_name, password, location_id)' +
-  `VALUES ('3', 'rachel', 'masih', 'raymas', 'secretpass', '11209')`)
+  pool.query(text, values)
     .then((data) => {
       res.locals = data.rows;
       return next();
@@ -52,41 +49,17 @@ userController.createUser = (req, res, next) => {
 // };
 
 
-// userController.deleteUser = (req, res, next) => {
-//   // pool.query('SELECT * FROM algos ORDER BY id')
-//   // pool.query('SELECT * FROM "user"')
-//     .then((data) => {
-//       console.log(data.rows);
-//       res.locals = data.rows;
-//       return next();
-//     })
-//     .catch((err) => {
-//       return next(console.log(err));
-//     });
-// };
+userController.deleteUser = (req, res, next) => {
 
-
-// For reference
-// dbController.saveAlgo = (req, res, next) => {
-//   pool.query(`INSERT INTO algos (algostring) VALUES ('${req.body.data}')`)
-//   .then((data) => {
-//     res.locals = data.rows;
-//     return next();
-//   })
-//   .catch((err) => {
-//       return next(console.log(err));
-//     });
-// };
-
-// dbController.delAlgo = (req, res, next) => {
-//   pool.query(`DELETE FROM algos WHERE id=${req.body.id}`)
-//   .then((data) => {
-//     res.locals = data.rows;
-//     return next();
-//   })
-//   .catch((err) => {
-//       return next(console.log(err));
-//     });
-// };
+  const text = `DELETE FROM "user" WHERE user_id = ${req.params.id} `
+  pool.query(text)
+    .then((data) => {
+      if(!data) return next ({message: 'User cannot be deleted'}) 
+      return next();
+    })
+    .catch((err) => {
+      return next(console.log(err));
+    });
+};
 
 module.exports = userController;
