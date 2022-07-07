@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/navbar.jsx';
-import Home from './pages/homePage/home.jsx';
-import About from './pages/aboutPage/about.jsx';
-import Articles from './pages/articlesPage/articles.jsx';
-import Education from './pages/educationPage/education.jsx';
-import FAQs from './pages/FAQsPage/FAQs.jsx';
-import Item from './pages/itemPage/item.jsx';
-import Login from './pages/loginPage/login.jsx';
-import SignUp from './pages/signUpPage/signUp.jsx';
-import Volunteer from './pages/volunteerPage/volunteer.jsx';
+import Navbar from './globalComponents/navbar.jsx';
+import Home from './infoPages/homePage/home.jsx';
+import About from './infoPages/aboutPage/about.jsx';
+import Articles from './infoPages/articlesPage/articles.jsx';
+import Education from './infoPages/educationPage/education.jsx';
+import FAQs from './infoPages/FAQsPage/FAQs.jsx';
+import Item from './infoPages/itemPage/item.jsx';
+import Login from './userPages/loginPage/login.jsx';
+import SignUp from './userPages/signUpPage/signUp.jsx';
+import Volunteer from './userPages/volunteerPage/volunteer.jsx';
 
 
 

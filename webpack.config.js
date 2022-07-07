@@ -20,6 +20,14 @@ module.exports = {
           }
         }
       },
+      // {
+      //   test: /\.(png|jpe?g|gif)$/i,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //     },
+      //   ],
+      // },
       {
         test: /\.css/,
         exclude: /node_modules/,
@@ -35,5 +43,6 @@ module.exports = {
   })],
   devServer: {
     historyApiFallback: true
-  }
+  },
+  devtool: 'inline-source-map'
 };

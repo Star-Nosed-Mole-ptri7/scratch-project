@@ -1,0 +1,47 @@
+.articles-title {
+  height: 35%;
+  background-image: url("../../static/images/greenSymbol.jpg");
+  background-size: 100% 100%;
+  color: rgb(241, 252, 236);
+}
+
+.articles-title h1 {
+  margin-left: 10vw;
+  font-size: 56px;
+  margin-top: 0;
+  padding: 40px 0px;
+}
+
+.articles-items {
+  margin-top: 40px;
+  margin-left: 10vw;
+}
+
+.article-image {
+  height: 80px;
+  width: 80px;
+  float: left;
+  margin-right: 10px;
+}
+
+.articles-items a {
+  text-decoration: none;
+  color: black;
+}
+
+.articleTitle {
+  display: inline-block;
+  margin: 0px;
+}
+
+.articleDate {
+  font-size: 12px;
+}
+
+.articleSummary {
+  width: 80%;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

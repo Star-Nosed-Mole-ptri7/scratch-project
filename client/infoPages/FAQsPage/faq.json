@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "question": "How many fizz in the bazz?",
+    "answer": "Currently we have 23 fizz and 14 bazz"
+  },
+  {
+    "id": 2,
+    "question": "If I were to need to contact flam, where could I find contact info?",
+    "answer": "Contact flam here: 1-888-FLAM"
+  },
+  {
+    "id": 3,
+    "question": "Where did your foo start?",
+    "answer": "We started in the area of fizz-buzz"
+  },
+  {
+    "id": 4,
+    "question": "Where can I find out more?",
+    "answer": "Get more information on our mission here. (If we needed a link we will have to hard code this data into jsx rather than in json?)"
+  }
+]
