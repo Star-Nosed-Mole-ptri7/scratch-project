@@ -38,6 +38,9 @@ userController.createUser = (req, res, next) => {
 // userController.updateUser = (req, res, next) => {
 //   // pool.query('SELECT * FROM algos ORDER BY id')
 //   // pool.query('SELECT * FROM "user"')
+
+//   //username, pass 
+//   //location, recycle progress
 //     .then((data) => {
 //       console.log(data.rows);
 //       res.locals = data.rows;
