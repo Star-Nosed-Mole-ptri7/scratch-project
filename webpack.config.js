@@ -42,7 +42,10 @@ module.exports = {
     template: './client/index.html'
   })],
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   },
   devtool: 'inline-source-map'
 };

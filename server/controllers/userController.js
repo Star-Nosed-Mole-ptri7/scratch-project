@@ -9,7 +9,6 @@ const userController = {};
 userController.getTest = (req, res, next) => {
   pool.query('SELECT * FROM "user"')
     .then((data) => {
-      console.log(data.rows);
       res.locals = data.rows;
       return next();
     })
@@ -20,10 +19,10 @@ userController.getTest = (req, res, next) => {
 
 userController.createUser = (req, res, next) => {
 
-  const {user_id, first_name, last_name, user_name, password, location} = req.body;
-  const values = [user_id, first_name, last_name, user_name, password, location];
-  const text = 'INSERT INTO "user" (user_id, first_name, last_name, user_name, password, location)' +
-                `VALUES ($1, $2, $3, $4, $5, $6)`;
+  const {first_name, last_name, user_name, password} = req.body;
+  const values = [first_name, last_name, user_name, password];
+  const text = 'INSERT INTO "user" (first_name, last_name, user_name, password)' +
+                `VALUES ($1, $2, $3, $4)`;
 
   pool.query(text, values)
     .then((data) => {
