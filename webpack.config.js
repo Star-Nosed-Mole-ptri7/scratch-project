@@ -20,14 +20,6 @@ module.exports = {
           }
         }
       },
-      // {
-      //   test: /\.(png|jpe?g|gif)$/i,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //     },
-      //   ],
-      // },
       {
         test: /\.css/,
         exclude: /node_modules/,
@@ -42,7 +34,10 @@ module.exports = {
     template: './client/index.html'
   })],
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   },
   devtool: 'inline-source-map'
 };

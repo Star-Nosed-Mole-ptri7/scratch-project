@@ -3,7 +3,7 @@
     display:grid;
     grid-template-rows: repeat(2,.5fr);
     grid-gap: 10em;
-    
+    font-size: xx-large;
 }
 
 /* GOAL'S CONTAINER */
@@ -14,7 +14,9 @@
     margin-bottom: 250px;
 }
 
-.goalContainer #text{
+.goalContainer #text:hover{
+    -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 
 .goalContainer #img{
@@ -24,9 +26,6 @@
 }
 
 /* ANDY'S CONTAINER */
-#andyName{
-    text-align: center;
-}
 
 .andyContainer{
     display:flex;
@@ -36,6 +35,7 @@
 
 .andyContainer #text{
     margin-left: 150px;
+    font-size: large;
 }
 
 .andyContainer #img{
