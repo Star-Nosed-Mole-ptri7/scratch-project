@@ -18,16 +18,34 @@ userController.getTest = (req, res, next) => {
 };
 
 userController.createUser = (req, res, next) => {
-
   const {first_name, last_name, user_name, password} = req.body;
   const values = [first_name, last_name, user_name, password];
-  const text = 'INSERT INTO "user" (first_name, last_name, user_name, password)' +
-                `VALUES ($1, $2, $3, $4)`;
+  const text = 'INSERT INTO "user" (first_name, last_name, user_name, password, recycle_progress)' +
+                `VALUES ($1, $2, $3, $4, 0)`;
 
   pool.query(text, values)
     .then((data) => {
       res.locals = data.rows;
       return next();
+    })
+    .catch((err) => {
+      return next(console.log(err));
+    });
+};
+
+userController.loginUser = (req, res, next) => {
+  const {user_name, password} = req.body;
+  const text = `select * from "user" where user_name = '${user_name}'`;
+
+  pool.query(text)
+    .then((data) => {
+      res.locals = data.rows;
+      if (data.rows[0] && data.rows[0].password === password) {
+        console.log("Successful login");
+        return next();
+      } else {
+        console.log("Invalid login");
+      }
     })
     .catch((err) => {
       return next(console.log(err));
@@ -53,7 +71,7 @@ userController.createUser = (req, res, next) => {
 
 userController.deleteUser = (req, res, next) => {
 
-  const text = `DELETE FROM "user" WHERE user_id = ${req.params.id} `
+  const text = `DELETE FROM "user" WHERE user_name = '${req.params.id}' `
   pool.query(text)
     .then((data) => {
       if(!data) return next ({message: 'User cannot be deleted'}) 

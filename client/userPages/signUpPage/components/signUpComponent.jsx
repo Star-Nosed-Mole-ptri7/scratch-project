@@ -1,10 +1,6 @@
 import React from 'react'
 
 
-
-// User database fields: first_name, last_name, user_name, password, recycle_progress
-
-
 class SignUpComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -40,8 +36,7 @@ class SignUpComponent extends React.Component {
       user_name: this.state.user_name,
       password: this.state.password
     };
-    console.log(body);
-    fetch('/api', {
+    fetch('/api/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
@@ -86,6 +81,6 @@ class SignUpComponent extends React.Component {
       ></input>
     </form>);
   }
-  }
+}
 
   export default SignUpComponent;
