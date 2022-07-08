@@ -3,10 +3,12 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const userRouter = require('./routes/userRouter');
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/build', express.static('./build'));
 
