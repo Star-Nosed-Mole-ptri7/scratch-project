@@ -1,4 +1,4 @@
-p {
-  /* Center horizontally*/
-  text-align: center;
+#header {
+  display: flex;
+  position: absolute;
 }

@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {useLocation} from 'react-router-dom';
 
-class Item extends React.Component {
+function Item() {
+  const { state } = useLocation();
+  console.log(state)
+  const location = useLocation();
+  // const [itemState, useItemState] = useState({});
+  useEffect(()=> {
+    console.log(location)
+  })
 
-  render() {
-    return <h2>"ItemPage Works!!!"</h2>
-  }
+  return (
+    <div></div>
+  )
 }
 
 export default Item;

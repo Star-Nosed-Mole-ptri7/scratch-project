@@ -1,0 +1,20 @@
+.SearchComponent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-radius: 100%;
+}
+  
+#searchBar {
+    padding: 10px;
+    padding-right: 100px;
+    padding-left: 100px;
+    font-size: x-large;
+  }
+
+#searchButton {
+    font-size: x-large;
+    padding: 10px;
+    background-color: white;
+  }

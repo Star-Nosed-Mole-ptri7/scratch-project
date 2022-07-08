@@ -11,7 +11,7 @@ export default function Video() {
         />
         Your browser does not support the video tag.
       </video>
-        <h4 className="overlay">Our Mission</h4>
+        <div className="overlay">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</div>
     </div>
   );
 }
