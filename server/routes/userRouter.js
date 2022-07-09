@@ -1,11 +1,10 @@
 const express = require('express');
-
 const userController = require('../controllers/userController');
 const sessionController = require('../controllers/sessionController');
 
 const router = express.Router();
 
-router.get('/', userController.getTest, (req, res) => {
+router.get('/:name', userController.getUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
 
@@ -17,13 +16,18 @@ router.post('/login', userController.loginUser, sessionController.setCookie, (re
   return res.status(200).send(res.locals);
 });
 
+router.delete('/:name', userController.deleteUser, (req, res) => {
+  return res.status(200).send(res.locals);
+});
+
+router.get('/search', (req,res) => {
+  console.log('this is the search endpoint')
+})
+
+//STRETCH FEATURE//
 // router.patch('/', userController.editUser, (req, res) => {
 //   return res.status(200).send(res.locals)
-// })
-
-router.delete('/:id', userController.deleteUser, (req, res) => {
-  return res.status(200).send(res.locals)
-});
+// });
 
 
 module.exports = router;
