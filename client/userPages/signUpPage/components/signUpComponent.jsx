@@ -1,86 +1,93 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-class SignUpComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      first_name: '',
-      last_name: '',
-      user_name: '',
-      password: ''
-    };
+function SignUpComponent() {
+  const [ firstName, setFirstName ] = useState('');
+  const [ lastName, setLastName ] = useState('');
+  const [ userName, setUserName ] = useState('');
+  const [ password, setPassword ] = useState('');
+  
+  const navigate = useNavigate();
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
   }
 
-  updateFirstName(e) {
-    this.setState({first_name: e.target.value})
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   }
 
-  updateLastName(e) {
-    this.setState({last_name: e.target.value})
-  }
+  const updateUserName = (e) => {
+    setUserName(e.target.value);
+  };
 
-  updateUserName(e) {
-    this.setState({user_name: e.target.value})
-  }
+  const updatePass = (e) => {
+    setPassword(e.target.value);
+  };
 
-  updatePass(e) {
-    this.setState({password: e.target.value})
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      user_name: this.state.user_name,
-      password: this.state.password
+      first_name: firstName,
+      last_name: lastName,
+      user_name: userName,
+      password: password
     };
     fetch('/api/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     })
-      .then(() => console.log('Data saved'))
+      .then((res) => res.json())
+      .then((data) => {
+        fetch('/api/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ user_name: userName, password: password })
+        })
+          .then((res) => res.json())
+          .then((data) => navigate('/User', { state: data }))
+          .catch(e => console.log('err: ', e));
+        }
+      )
       .catch(e => console.log('err: ', e));
   }
 
-  render() {
-    return (<form onSubmit={(e) => this.handleSubmit(e)}>
-      <input
-        name="firstname"
-        type="text"
-        placeholder="firstname"
-        value={this.state.first_name}
-        onChange={(e) => this.updateFirstName(e)}
-      ></input>
-      <input
-        name="lastname"
-        type="text"
-        placeholder="lastname"
-        value={this.state.last_name}
-        onChange={(e) => this.updateLastName(e)}
-      ></input>
-      <input
-        name="username"
-        type="text"
-        placeholder="username"
-        value={this.state.user_name}
-        onChange={(e) => this.updateUserName(e)}
-      ></input>
-      <input
-        name="password"
-        type="password"
-        placeholder="password"
-        value={this.state.password}
-        onChange={(e) => this.updatePass(e)}
-      ></input>
-      <input
-        type="submit"
-        value="create user"
-      ></input>
-    </form>);
-  }
+  return (<form onSubmit={(e) => handleSubmit(e)}>
+    <input
+      name="firstname"
+      type="text"
+      placeholder="firstname"
+      value={firstName}
+      onChange={(e) => updateFirstName(e)}
+    ></input>
+    <input
+      name="lastname"
+      type="text"
+      placeholder="lastname"
+      value={lastName}
+      onChange={(e) => updateLastName(e)}
+    ></input>
+    <input
+      name="username"
+      type="text"
+      placeholder="username"
+      value={userName}
+      onChange={(e) => updateUserName(e)}
+    ></input>
+    <input
+      name="password"
+      type="password"
+      placeholder="password"
+      value={password}
+      onChange={(e) => updatePass(e)}
+    ></input>
+    <input
+      type="submit"
+      value="create user"
+    ></input>
+  </form>);
 }
 
   export default SignUpComponent;

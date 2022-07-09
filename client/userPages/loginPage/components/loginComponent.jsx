@@ -1,59 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-class LoginComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user_name: '',
-      password: ''
-    };
-  }
+function LoginComponent() {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const navigate = useNavigate();
 
-  updateUserName(e) {
-    this.setState({user_name: e.target.value})
-  }
+  const updateUserName = (e) => {
+    setUserName(e.target.value);
+  };
 
-  updatePass(e) {
-    this.setState({password: e.target.value})
-  }
+  const updatePass = (e) => {
+    setPassword(e.target.value);
+  };
 
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
-      user_name: this.state.user_name,
-      password: this.state.password
+      user_name: userName,
+      password: password
     };
     fetch('/api/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(body)
     })
-      .then(() => console.log('Data saved'))
+      .then((res) => res.json())
+      .then((data) => navigate('/User', { state: data }))
       .catch(e => console.log('err: ', e));
-  }
+  };
 
-  render() {
-    return (<form onSubmit={(e) => this.handleSubmit(e)}>
-      <input
-        name="username"
-        type="text"
-        placeholder="username"
-        value={this.state.user_name}
-        onChange={(e) => this.updateUserName(e)}
-      ></input>
-      <input
-        name="password"
-        type="password"
-        placeholder="password"
-        value={this.state.password}
-        onChange={(e) => this.updatePass(e)}
-      ></input>
-      <input
-        type="submit"
-        value="Login"
-      ></input>
-    </form>);
-  }
+  return (<form onSubmit={handleSubmit}>
+    <input
+      name="username"
+      type="text"
+      placeholder="username"
+      value={userName}
+      onChange={updateUserName}
+    ></input>
+    <input
+      name="password"
+      type="password"
+      placeholder="password"
+      value={password}
+      onChange={updatePass}
+    ></input>
+    <input
+      type="submit"
+      value="Login"
+    ></input>
+  </form>);
 }
 
   export default LoginComponent;
