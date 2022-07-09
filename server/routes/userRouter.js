@@ -8,7 +8,7 @@ router.get('/:name', userController.getUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
 
-router.post('/signup', userController.createUser, sessionController.setCookie, (req, res) => {
+router.post('/signup', userController.createUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
 

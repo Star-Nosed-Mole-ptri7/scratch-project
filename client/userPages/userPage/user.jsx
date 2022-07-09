@@ -1,11 +1,12 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './user.css';
 
 const UserPage = (props) => {
   const { state } = useLocation();
   if (!state) {
-    navigate('/SignUp');
+    const navigate = useNavigate();
+    return navigate('/SignUp');
   }
   const user = state[0];
   return <div className='userMainDiv'>
@@ -34,7 +35,7 @@ const UserPage = (props) => {
                       <div className="col-sm-6">
                           <p className="m-b-10 f-w-600">Password</p>
                           {/* <h6 className="text-muted f-w-400">********</h6> */}
-                          <input type="password" value="*dsad**"/>
+                          <input type="password" readOnly value="*dsad**"/>
                       </div>
                   </div>
                   </div>

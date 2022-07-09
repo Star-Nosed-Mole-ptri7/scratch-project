@@ -25,7 +25,6 @@ userController.createUser =  (req, res, next) => {
   const {first_name, last_name, user_name, password} = req.body;
   const hash = bcrypt.hash(password, 10)
   .then((hash) => {
-    console.log(hash);
     const values = [first_name, last_name, user_name, hash];
     const text = `INSERT INTO "user" (first_name, last_name, user_name, password, recycle_progress)` +
                   `VALUES ($1, $2, $3, $4, 0)`;
@@ -50,7 +49,6 @@ userController.loginUser = (req, res, next) => {
     .then((data) => {
       res.locals = data.rows;
       if (data.rows[0]) {
-        // data.rows[0].password === password)
         bcrypt.compare(password, data.rows[0].password)
           .then((result) => {
             if (result) {
