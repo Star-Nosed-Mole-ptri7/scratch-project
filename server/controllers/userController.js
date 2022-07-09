@@ -100,5 +100,16 @@ userController.deleteUser = (req, res, next) => {
 //     });
 // };
 
+userController.searchItem = (req, res, next) => {
+  console.log(req.params.name)
+  pool.query(`SELECT * FROM "recycled items" WHERE item_name='${req.params.name}'`)
+    .then((data) => {res.locals.data = data
+      return next()
+    })
+    .catch((err) => {
+      return next(console.log(err));
+    });
+}
+
 
 module.exports = userController;

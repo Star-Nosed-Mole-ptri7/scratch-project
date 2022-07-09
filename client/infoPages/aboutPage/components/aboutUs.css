@@ -56,14 +56,27 @@
     justify-content: center;
 }
 
-.brandonContainer #text{
-    margin-left: 150px;
+.brandonContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.brandonTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.brandonTextAndName #text {
+    margin-top:0px;
+    font-size: large;
 }
 
 .brandonContainer #img{
+    right: 500px;
     margin-left: 150px;
     margin-right: 150px;
-    width:500px; height:500px;
+    width:300px; height:300px;
 }
 
 
@@ -78,14 +91,27 @@
     justify-content: center;
 }
 
-.jessicaContainer #text{
-    margin-left:150px
+.jessicaContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.jessicaTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.jessicaTextAndName #text {
+    margin-top:0px;
+    font-size: large;
 }
 
 .jessicaContainer #img{
+    right: 500px;
     margin-left: 150px;
     margin-right: 150px;
-    width:500px; height:500px;
+    width:300px; height:300px;
 }
 
 
@@ -95,21 +121,33 @@
     text-align: center;
 }
 
-
 .marioContainer{
     display:flex;
     align-items: center;
     justify-content: center;
 }
 
-.marioContainer #text{
-    margin-left: 150px;
+.marioContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.marioTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.marioTextAndName #text {
+    margin-top:0px;
+    font-size: large;
 }
 
 .marioContainer #img{
+    right: 500px;
     margin-left: 150px;
     margin-right: 150px;
-    width:500px; height:500px;
+    width:300px; height:300px;
 }
 
 
@@ -125,12 +163,25 @@
     justify-content: center;
 }
 
-.markContainer #text{
-    margin-left: 150px;
+.markContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.markTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.markTextAndName #text {
+    margin-top:0px;
+    font-size: large;
 }
 
 .markContainer #img{
+    right: 500px;
     margin-left: 150px;
     margin-right: 150px;
-    width:500px; height:500px;
+    width:300px; height:300px;
 }

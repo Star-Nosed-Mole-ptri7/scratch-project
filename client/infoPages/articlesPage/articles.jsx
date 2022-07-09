@@ -8,9 +8,12 @@ class Articles extends React.Component {
     this.state = {articles: []};
   }
 
-  componentDidMount() {
-    this.grabArticles('recycling');
-  }
+  // componentDidMount() {
+  //   this.grabArticles('recycling');
+  // }
+
+
+  //Marks API he paid for this do not request alot!
 
   grabArticles(query) {
     var url = 'https://newsapi.org/v2/everything?' +
