@@ -27,9 +27,13 @@ function LoginComponent() {
       body: JSON.stringify(body)
     })
       .then((res) => res.json())
-      .then(() => {
-        navigate('/User');
-        location.reload();
+      .then((d) => {
+        if (d[0].user_name) {
+          navigate('/User');
+          location.reload();
+        } else {
+          navigate('/SignUp');
+        }
       })
       .catch(e => console.log('err: ', e));
   };

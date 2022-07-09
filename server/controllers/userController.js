@@ -55,8 +55,11 @@ userController.loginUser = (req, res, next) => {
               return next();
             } else {
               console.log("Invalid login");
+              return res.send([{'user_name': null}]);
             }
           })
+        } else {
+          return res.send([{'user_name': null}]);
         }
     })
     .catch((err) => {
