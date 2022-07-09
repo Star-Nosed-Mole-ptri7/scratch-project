@@ -9,7 +9,7 @@ class Login extends React.Component {
           <div>
             <LoginComponent/>
             <Link to="/SignUp">Click to sign up</Link>
-            </div>
+          </div>
       );
     }
   }
