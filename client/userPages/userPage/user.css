@@ -16,6 +16,20 @@
   background-color: #aedbb6;
 }
 
+.col-sm-8 {
+  height: 100%;
+}
+
+.logout-button {
+  font-size: 12px;
+  float: right;
+  color: blue;
+  text-decoration: underline;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+}
 
 
 
@@ -31,7 +45,7 @@
   background-color: rgb(240, 246, 239);
   overflow: hidden;
   width: 800px;
-  
+  height: 100%;
 }
 
 .card {

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
+// import '../login.css';
+
 function LoginComponent() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +30,14 @@ function LoginComponent() {
       body: JSON.stringify(body)
     })
       .then((res) => res.json())
-      .then((data) => navigate('/User', { state: data }))
+      .then((d) => {
+        if (d[0].user_name) {
+          navigate('/User');
+          location.reload();
+        } else {
+          navigate('/SignUp');
+        }
+      })
       .catch(e => console.log('err: ', e));
   };
 
