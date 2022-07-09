@@ -16,6 +16,10 @@
   background-color: #aedbb6;
 }
 
+.col-sm-8 {
+  height: 100%;
+}
+
 .logout-button {
   font-size: 12px;
   float: right;
