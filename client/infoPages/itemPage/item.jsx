@@ -2,44 +2,84 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Loader } from '@googlemaps/js-api-loader';
 import './item.css';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 function Item() {
-  const [itemState, setItemState] = useState({
-    map: false,
-    apibutton: true,
-    listOfLocations: false,
-  });
+  const [itemState, setItemState] = useState({ map: false, apibutton: true, listOfLocations: false, coords: {} })
   const location = useLocation();
   const apiOption = {
-    apiKey: ''
-    // Google api key ^
+    apiKey: 'AIzaSyB-lCoXh1Mzf3YnbUW-ZxNSuL-u4oPynUA'
   };
+  let displayArr = [];
+  let displayValue;
 
   useEffect(() => {
     console.log(location.state.itemData);
-    const loader = new Loader(apiOption);
     let apib = document.getElementById('apibutton');
-    apib.addEventListener('click', googleApi);
-    apib.addEventListener('click', () => {
-      apib.style.display = 'none';
+    let zipbutton = document.getElementById('zipboxSubmit');
+    zipbutton.addEventListener('click', zipcodeRequest)
+  });
+
+
+
+  //function to convert user input zipcode -> coords to generate map.
+  function zipcodeRequest() {
+    console.log('inside zipcode')
+    let geocoder = new google.maps.Geocoder();
+    let address = document.getElementById('zipbox').value;
+    let coords = { lat: 1, lng: 1 };
+    geocoder.geocode({
+      'address': address
+    }).then(data => {
+      coords = { lat: data.results[0].geometry.location.lat(), lng: data.results[0].geometry.location.lng() }
+      console.log('right before setting new state')
+      setItemState({ map: false, apibutton: true, listOfLocations: false, coords: { lat: data.results[0].geometry.location.lat(), lng: data.results[0].geometry.location.lng() } })
+      //AFTER GRABBING ZIPCODE/CONVERTING TO COORDS, CALL THE MAP FUNCTION TO GENERATE THE MAP.
+      generateMap(coords);
     })
+  }
+
+  //function to generate the map, and will call the search locations function.
+  function generateMap(coords) {
+    console.log('inside generateMap')
+    const loader = new Loader(apiOption);
+    setItemState(prevState => ({ map: true, apibutton: true, listOfLocations: false, coords: prevState.coords }))
     loader.load().then((google) => {
       console.log('rendering map!');
-      let geocoder = new google.maps.Geocoder();
-      let rowland = { lat: 33.976124, lng: -117.90534 };
+      let location = coords;
+      console.log(location)
       let map = new google.maps.Map(document.getElementById('map'), {
-        center: rowland,
+        center: location,
         zoom: 8
       });
-
-      let request = { location: rowland, radius: 500, query: 'recycling' };
-      let service = new google.maps.places.PlacesService(map);
-      service.textSearch(request, test);
-      document.getElementById('zipbutton').addEventListener('click', () => {
-        geocoding(geocoder, map);
-      });
+      //call search location function
+      searchLocations(map, location)
     });
-  });
+  }
+
+
+  //function to bring up a list of 20 locations based on the user inputed zip code searching with "query"
+  function searchLocations(map, area) {
+    let request = { location: area, radius: 500, query: location.state.itemData.keyword }
+    let service = new google.maps.places.PlacesService(map);
+    service.textSearch(request, locationSorter);
+    //calls a function to organize the returned data
+  }
+
+  //sorts and organizes the data returned from search location.
+  function locationSorter(results, status) {
+    setItemState(prevState => ({ map: true, apibutton: true, listOfLocations: true, coords: prevState.coords }))
+    console.log('test');
+    if (status == google.maps.places.PlacesServiceStatus.OK)
+      console.log(results);
+    for (let i = 0; i < results.length - 10; i++) {
+      displayArr.push(results[i].formatted_address)
+    }
+    // console.log(sortedData)
+    console.log(displayArr)
+    return;
+  }
+
 
   function recyclable(boolean) {
     console.log(boolean);
@@ -52,6 +92,7 @@ function Item() {
 
   function locationArray(locationDataFromApi) {
     console.log('inside arr fun');
+    // let locationData = location.state.itemData
     let arr = [];
     for (let key in locationDataFromApi) {
       arr.push(locationDataFromApi[key]);
@@ -60,98 +101,49 @@ function Item() {
     return arr;
   }
 
-  let data = locationArray(location.state.itemData);
+  displayValue = locationArray(location.state.itemData)
 
-  function test(results, status) {
-    console.log('test');
-    if (status == google.maps.places.PlacesServiceStatus.OK)
-      console.log(results);
-    else console.log('something went wrong');
-  }
 
-  function test2() {
-    let request = { location: rowland, radius: 500, query: 'recycling' };
-    let service = new google.maps.places.PlacesService(map);
-    service.textSearch(request, test);
-  }
-
-  function googleApi() {
-    setItemState({ map: true, apibutton: true, zipbox: true });
-    let data = arr(location.state.itemData);
-    return data;
-  }
-
-  const { apibutton, map } = itemState;
+  const { apibutton, map, listOfLocations } = itemState;
   return (
-    // This is global div below
     <div>
+      {/* Global */}
 
-      {/* Recycable or not text */}
       <div className="itemRecycle">
-        {recyclable(data[1])}
-      </div>
-      {/* Recycable or not text */}
-
-
-      {/* This is the className item container div below */}
+        {recyclable(displayValue[1])}
+        </div>
       <div className="ItemContainer">
-
-        {/* This is the ID img div below */}
         <div className="itemCard">
-          {/* This displays the image of the item */}
-          <img
-            src={data[4]}
+        <img
+            src={displayValue[4]}
             alt="plastic-bottle"
             id="itemImg"
           />
-          {/* This is the ID item card content div below */}
           <div id="itemCardContent">
-            {data[2]}
-            {/* This displays the description of the item */}
+            {displayValue[2]}
+            <div>
+            </div>
           </div>
         </div>
-        {/* This is end of the ID img div above*/}
-
-
       </div>
-      {/* End of className item Container div above */}
 
 
-      {/*Start of map div below */}
+
+
+
+      <div className="box">
+      <input type="textbox" id="zipbox" placerholder="zipcode" />
+      <button type="button" id='zipboxSubmit'>search</button>
+      </div>
       <div className="Map">
-        {map ?
-          (
-            <div>
-
-              {/* Below is the div for Map */}
-              <div id="map">
-              </div>
-              {/* Above is the div for Map */}
-
-              {/* Below is the div for Zipcode Text Box */}
-              <div>
-                <input type="textbox" id="zipbox" placerholder="zipcode" />
-              </div>
-              {/* Above is the div for Zipcode Text Box */}
-
-              {/* Below is the div for Zipcode Text Box */}
-              <div>
-                <button id="listLocation">search</button>
-              </div>
-              {/* Above is the div for Zipcode Text Box */}
-
-            </div>) : null}
-
-        {/* Once apibutton is clicked, we will set the map to true rather than false and it will render the map zipcode box and remove the apibutton */}
-        {apibutton ? (
-          <button id="apibutton">do you want to recycle this item?</button>) : null}
+      {map ? (<div id="map"></div>) : (null)}
+      {/* {listOfLocations ? (<div>{displayArr}</div>) : (null)} */}
+      <div>{displayArr}</div>
       </div>
-      {/* End of map div above */}
-
-
+      {/* {apibutton ? (
+        <button id="apibutton">do you want to recycle</button>
+      ) : null} */}
     </div>
-    // End of the Global div above
-
   );
 }
 
