@@ -11,6 +11,7 @@ import Item from './infoPages/itemPage/item.jsx';
 import Login from './userPages/loginPage/login.jsx';
 import SignUp from './userPages/signUpPage/signUp.jsx';
 import Volunteer from './userPages/volunteerPage/volunteer.jsx';
+import User from './userPages/userPage/user.jsx';
 
 
 
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/User" element={<User />} />
           <Route path="/Item" element={<Item />} />
         </Routes>
         </main>

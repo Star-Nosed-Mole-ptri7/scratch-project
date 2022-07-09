@@ -3,7 +3,7 @@
 const sessionController = {};
 
 sessionController.setCookie = (req, res, next) => {
-  res.cookie('loggedIn', 'true');
+  res.cookie('user_name', res.locals[0].user_name);
   next();
 };
 
