@@ -5,9 +5,12 @@ import './signUp.css';
 class SignUp extends React.Component {
 
     render() {
-        return (<div className='signup-div'>
+        return (<>
+          <div className='signup-image'></div>
+          <div className='signup-div'>
         <SignUpComponent/>
-      </div>);
+      </div>
+      </>);
     }
   }
 

@@ -6,11 +6,13 @@ import './login.css'
 const Login = (props) => {
 
     
-    return (<div className='login-div'>
+    return (<>
+      <div className='login-image'></div>
+      <div className='login-div'>
       <LoginComponent/>
       <Link to="/SignUp">Click to sign up</Link>
-      </div>
-    );
+    </div>
+    </>);
 }
 
   export default Login;

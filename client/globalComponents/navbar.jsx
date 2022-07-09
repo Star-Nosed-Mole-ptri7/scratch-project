@@ -37,6 +37,7 @@ class Navbar extends React.Component {
             <li style={{float: 'right'}}><a className="active" href="/User">{this.state.userName}</a></li>
             <li style={{float: 'right'}}><a className="active" href="/About">About</a></li>
             <li style={{float: 'right'}}><a className="active" href="/FAQs">FAQS</a></li>
+          <li style={{float: 'right'}}><a className="active" href="/articles">Articles</a></li>
             <li style={{float: 'right'}}><a className="active" href="/Volunteer">Volunteer</a></li>
             </div>
         </ul>
@@ -49,6 +50,7 @@ class Navbar extends React.Component {
           <li style={{float: 'right'}}><a className="active" href="/Login">Login | SignUp</a></li>
           <li style={{float: 'right'}}><a className="active" href="/About">About</a></li>
           <li style={{float: 'right'}}><a className="active" href="/FAQs">FAQS</a></li>
+          <li style={{float: 'right'}}><a className="active" href="/articles">Articles</a></li>
           <li style={{float: 'right'}}><a className="active" href="/Volunteer">Volunteer</a></li>
           </div>
       </ul>
