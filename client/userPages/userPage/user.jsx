@@ -82,8 +82,8 @@ const UserPage = (props) => {
                               <div className="userProgressBar" style={{width: '400px'}}>
                                 <div className="userProgress" style={{width: `${user.recycle_progress}40%`}}></div>
                                 <br/>
-                              <span className='logout-button' onClick={removeSession}>Logout</span>
                           </div>
+                              <span className='logout-button' onClick={removeSession}>Logout</span>
                       </div>
                   </div>
                 </div>
