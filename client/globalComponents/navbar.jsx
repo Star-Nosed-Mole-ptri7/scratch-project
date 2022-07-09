@@ -6,7 +6,7 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: null
+      userName: Cookies.get('session_id')
     };
   }
 

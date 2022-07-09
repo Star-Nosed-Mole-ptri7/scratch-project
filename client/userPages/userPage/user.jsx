@@ -30,6 +30,7 @@ const UserPage = (props) => {
     const body = {
       session_id: user.user_name
     };
+    Cookies.remove('session_id');
     fetch('/api/removeSession', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
