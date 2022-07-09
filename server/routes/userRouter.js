@@ -1,6 +1,7 @@
 const express = require('express');
 
 const userController = require('../controllers/userController');
+const sessionController = require('../controllers/sessionController');
 
 const router = express.Router();
 
@@ -8,22 +9,22 @@ router.get('/:name', userController.getUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
 
-// router.post('/', userController.createUser, (req, res) => {
+router.post('/signup', userController.createUser, sessionController.setCookie, (req, res) => {
+  return res.status(200).send(res.locals);
+});
+
+router.post('/login', userController.loginUser, sessionController.setCookie, (req, res) => {
+  return res.status(200).send(res.locals);
+});
+
+router.delete('/:name', userController.deleteUser, (req, res) => {
+  return res.status(200).send(res.locals);
+});
+
+
+//STRETCH FEATURE//
+// router.patch('/', userController.editUser, (req, res) => {
 //   return res.status(200).send(res.locals)
-// })
-
-// router.patch('/', userController.updateUser, (req, res) => {
-//   return res.status(200).send(res.locals)
-// })
-
-// router.delete('/:name', userController.deleteUser, (req, res) => {
-//   return res.status(200).send(res.locals)
-
-// })
-
-// router.post('/login', userController.verifyUser, (req, res) => {
-//   // resturn res.status(200).sendFile(path.join(__dirname, **SERVE USER PAGE**)
-
 // });
 
 

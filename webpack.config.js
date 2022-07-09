@@ -11,7 +11,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -32,5 +32,12 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin({
     template: './client/index.html'
-  })]
+  })],
+  devServer: {
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
+  },
+  devtool: 'inline-source-map'
 };

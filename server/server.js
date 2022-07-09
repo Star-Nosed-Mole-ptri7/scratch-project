@@ -3,19 +3,27 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const userRouter = require('./routes/userRouter');
 
 app.use(express.json());
+app.use(cookieParser());
 
-app.get('/build/bundle.js', (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, '..', 'build', 'bundle.js'));
-});
+app.use('/build', express.static('./build'));
 
-app.get('/', (req, res) => {
+app.use('/api', userRouter);
+
+app.get('/*', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
-app.use('/api', userRouter);
+
+//ROUTER FOR ANDY//
+app.get('/', (req, res) => {
+  return res.status(200);
+});
+
+
 
 app.listen(3000);

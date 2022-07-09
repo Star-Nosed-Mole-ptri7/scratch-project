@@ -1,0 +1,136 @@
+
+.TeamContainer{
+    display:grid;
+    grid-template-rows: repeat(2,.5fr);
+    grid-gap: 10em;
+    font-size: xx-large;
+}
+
+/* GOAL'S CONTAINER */
+.goalContainer{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    margin-bottom: 250px;
+}
+
+.goalContainer #text:hover{
+    -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.goalContainer #img{
+    margin-left: 150px;
+    width:700px; height:700px;
+    box-shadow: 1px 1px 12px rgb(128, 128, 128);
+}
+
+/* ANDY'S CONTAINER */
+
+.andyContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.andyContainer #text{
+    margin-left: 150px;
+    font-size: large;
+}
+
+.andyContainer #img{
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
+}
+
+/* BRANDON'S CONTAINER */
+
+#brandonName{
+    text-align: center;
+}
+
+.brandonContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brandonContainer #text{
+    margin-left: 150px;
+}
+
+.brandonContainer #img{
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
+}
+
+
+
+#jessicaName{
+    text-align: center;
+}
+
+.jessicaContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jessicaContainer #text{
+    margin-left:150px
+}
+
+.jessicaContainer #img{
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
+}
+
+
+
+
+#marioName{
+    text-align: center;
+}
+
+
+.marioContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marioContainer #text{
+    margin-left: 150px;
+}
+
+.marioContainer #img{
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
+}
+
+
+
+
+#markName{
+    text-align: center;
+}
+
+.markContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.markContainer #text{
+    margin-left: 150px;
+}
+
+.markContainer #img{
+    margin-left: 150px;
+    margin-right: 150px;
+    width:500px; height:500px;
+}
