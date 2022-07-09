@@ -1,7 +1,7 @@
 import React from 'react';
 import ArticleItem from './articleItem.jsx';
 import './articles.css';
-const apiKey = "abc"
+const apiKey = "a85866a923434952b2da0b51bea08454"
 
 // process.env.REACT_APP_ARTICLE_API_KEY
 
@@ -11,9 +11,9 @@ class Articles extends React.Component {
     this.state = {articles: []};
   }
 
-  // componentDidMount() {
-  //   this.grabArticles('recycling');
-  // }
+  componentDidMount() {
+    this.grabArticles('recycling');
+  }
 
 
   //Marks API he paid for this do not request alot!
