@@ -1,6 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
-import './navbar.css'
+import './navbar.css';
 
 class Navbar extends React.Component {
   constructor(props) {
