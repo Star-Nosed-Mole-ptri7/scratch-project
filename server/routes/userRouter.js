@@ -1,6 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/userController');
-const sessionController = require('../controllers/sessionController');
+const cookieController = require('../controllers/cookieController');
 
 const router = express.Router();
 
@@ -17,7 +17,15 @@ router.post('/signup', userController.createUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
 
-router.post('/login', userController.loginUser, sessionController.setCookie, (req, res) => {
+router.post('/login', userController.loginUser, userController.createSession, cookieController.setCookie, (req, res) => {
+  return res.status(200).send(res.locals);
+});
+
+router.post('/checkSession', userController.checkSession, userController.sendSessionData, (req, res) => {
+  return res.status(200).send(res.locals);
+});
+
+router.post('/removeSession', userController.removeSession, (req, res) => {
   return res.status(200).send(res.locals);
 });
 

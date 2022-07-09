@@ -47,7 +47,10 @@ function SignUpComponent() {
           body: JSON.stringify({ user_name: userName, password: password })
         })
           .then((res) => res.json())
-          .then((data) => navigate('/User', { state: data }))
+          .then(() => {
+            navigate('/User');
+            location.reload();
+          })
           .catch(e => console.log('err: ', e));
         }
       )
