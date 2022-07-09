@@ -27,7 +27,10 @@ function LoginComponent() {
       body: JSON.stringify(body)
     })
       .then((res) => res.json())
-      .then((data) => navigate('/User', { state: data }))
+      .then(() => {
+        navigate('/User');
+        location.reload();
+      })
       .catch(e => console.log('err: ', e));
   };
 

@@ -38,7 +38,6 @@ userController.createUser =  (req, res, next) => {
         return next(console.log(err));
       });
     });
-
 };
 
 userController.loginUser = (req, res, next) => {
@@ -64,6 +63,64 @@ userController.loginUser = (req, res, next) => {
       return next(console.log(err));
     });
 };
+
+userController.createSession = (req, res, next) => {
+  const { user_name } = req.body;
+  const text = 'INSERT INTO "sessions" (session_id)' +
+                `VALUES ('${user_name}')`;
+  pool.query(text)
+    .then((data) => {
+      return next();
+    })
+    .catch((err) => {
+      if (err.code === '23505') {
+        return next();
+      }
+      return next(console.log(err));
+    });
+};
+
+userController.checkSession = (req, res, next) => {
+  const { session_id } = req.body;
+  const text = `select * from sessions where session_id = '${session_id}'`;
+  pool.query(text)
+    .then((data) => {
+      res.locals = data.rows;
+      return next();
+    })
+    .catch((err) => {
+      return next(console.log(err));
+    });
+};
+
+userController.sendSessionData = (req, res, next) => {
+  if (!res.locals[0]) {
+    return next();
+  }
+  const { session_id } = req.body;
+  const text = `select * from "user" where user_name = '${session_id}'`;
+  pool.query(text)
+    .then((data) => {
+      res.locals = data.rows;
+      return next();
+    })
+    .catch((err) => {
+      return next(console.log(err));
+    });
+  };
+
+  userController.removeSession = (req, res, next) => {
+    const { session_id } = req.body;
+    const text = `delete from sessions where session_id = '${session_id}'`;
+    pool.query(text)
+      .then((data) => {
+        res.locals = data.rows;
+        return next();
+      })
+      .catch((err) => {
+        return next(console.log(err));
+      });
+  };
 
 
 userController.deleteUser = (req, res, next) => {
