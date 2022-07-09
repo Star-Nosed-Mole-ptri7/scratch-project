@@ -19,11 +19,6 @@ app.get('/*', (req, res) => {
 });
 
 
-//ROUTER FOR ANDY//
-app.get('/', (req, res) => {
-  return res.status(200);
-});
-
 
 
 app.listen(3000);
