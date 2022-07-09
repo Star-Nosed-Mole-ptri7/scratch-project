@@ -12,7 +12,6 @@ class Navbar extends React.Component {
         <li style={{float: 'right'}}><a className="active" href="/About">About</a></li>
         <li style={{float: 'right'}}><a className="active" href="/FAQs">FAQS</a></li>
         <li style={{float: 'right'}}><a className="active" href="/Volunteer">Volunteer</a></li>
-        <li style={{float: 'right'}}><a className="active" href="/Education">Education</a></li>
         <li style={{float: 'right'}}><a className="active" href="/Articles">Articles</a></li>
         </div>
     </ul>

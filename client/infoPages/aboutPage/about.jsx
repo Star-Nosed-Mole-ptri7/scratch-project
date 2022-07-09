@@ -17,8 +17,8 @@ class About extends React.Component {
         <Video />
         <GoalsComponent />
         <div className="TeamContainer">
-          <BrandonComponent />
           <AndyComponent />
+          <BrandonComponent />
           <JessicaComponent />
           <MarioComponent />
           <MarkComponent />

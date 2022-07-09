@@ -7,11 +7,12 @@ function Item() {
   const [itemState, setItemState] = useState({
     map: false,
     apibutton: true,
-    listOfLocations: false
+    listOfLocations: false,
   });
   const location = useLocation();
   const apiOption = {
-    apiKey: 'AIzaSyBE8FJunz2YQP30CAeIeEIG0QnOq4l5G2I'
+    apiKey: ''
+    // Google api key ^
   };
 
   useEffect(() => {
@@ -19,9 +20,9 @@ function Item() {
     const loader = new Loader(apiOption);
     let apib = document.getElementById('apibutton');
     apib.addEventListener('click', googleApi);
-    // loader.load().then(() => {
-    //   console.log('Maps JS API loaded');
-    //   const map = initMap();
+    apib.addEventListener('click', () => {
+      apib.style.display = 'none';
+    })
     loader.load().then((google) => {
       console.log('rendering map!');
       let geocoder = new google.maps.Geocoder();
@@ -33,7 +34,7 @@ function Item() {
 
       let request = { location: rowland, radius: 500, query: 'recycling' };
       let service = new google.maps.places.PlacesService(map);
-      // service.textSearch(request, test);
+      service.textSearch(request, test);
       document.getElementById('zipbutton').addEventListener('click', () => {
         geocoding(geocoder, map);
       });
@@ -51,7 +52,6 @@ function Item() {
 
   function locationArray(locationDataFromApi) {
     console.log('inside arr fun');
-    // let locationData = location.state.itemData
     let arr = [];
     for (let key in locationDataFromApi) {
       arr.push(locationDataFromApi[key]);
@@ -75,50 +75,83 @@ function Item() {
     service.textSearch(request, test);
   }
 
-  // function geocoding(geocoder, map){
-  //     let address = document.getElementById('zipbox').value;
-  //     geocoder.geocode({
-  //         'address': address
-  //     }).then (data => (console.log(data)))
-  // }
-
   function googleApi() {
-    setItemState({ map: true, apibutton: true });
+    setItemState({ map: true, apibutton: true, zipbox: true });
     let data = arr(location.state.itemData);
     return data;
-    // return arr(location.state.itemData);
   }
 
   const { apibutton, map } = itemState;
   return (
+    // This is global div below
     <div>
-      <div className="item-container">
-        <div className="item-card">
-          <div id="item-card_header">{data[0]}</div>
-          <div id="item-card_content">
+
+      {/* Recycable or not text */}
+      <div className="itemRecycle">
+        {recyclable(data[1])}
+      </div>
+      {/* Recycable or not text */}
+
+
+      {/* This is the className item container div below */}
+      <div className="ItemContainer">
+
+        {/* This is the ID img div below */}
+        <div className="itemCard">
+          {/* This displays the image of the item */}
+          <img
+            src={data[4]}
+            alt="plastic-bottle"
+            id="itemImg"
+          />
+          {/* This is the ID item card content div below */}
+          <div id="itemCardContent">
             {data[2]}
-            <div>
-              <div id="item-card_content">
-                {recyclable(data[1])}
-                <div>
-                  <img
-                    src="https://sanjoserecycles.org/wp-content/uploads/sites/8/2015/02/plastic-water-bottle-empty.jpg"
-                    alt="plastic-bottle"
-                    id="img"
-                  />
-                </div>
-              </div>
-            </div>
+            {/* This displays the description of the item */}
           </div>
         </div>
+        {/* This is end of the ID img div above*/}
+
+
       </div>
-      <input type="textbox" id="zipbox" placerholder="zipcode" />
-      <button type="button">submit</button>
-      {map ? <div id="map"></div> : null}
-      {apibutton ? (
-        <button id="apibutton">do you want to recycle</button>
-      ) : null}
+      {/* End of className item Container div above */}
+
+
+      {/*Start of map div below */}
+      <div className="Map">
+        {map ?
+          (
+            <div>
+
+              {/* Below is the div for Map */}
+              <div id="map">
+              </div>
+              {/* Above is the div for Map */}
+
+              {/* Below is the div for Zipcode Text Box */}
+              <div>
+                <input type="textbox" id="zipbox" placerholder="zipcode" />
+              </div>
+              {/* Above is the div for Zipcode Text Box */}
+
+              {/* Below is the div for Zipcode Text Box */}
+              <div>
+                <button id="listLocation">search</button>
+              </div>
+              {/* Above is the div for Zipcode Text Box */}
+
+            </div>) : null}
+
+        {/* Once apibutton is clicked, we will set the map to true rather than false and it will render the map zipcode box and remove the apibutton */}
+        {apibutton ? (
+          <button id="apibutton">do you want to recycle this item?</button>) : null}
+      </div>
+      {/* End of map div above */}
+
+
     </div>
+    // End of the Global div above
+
   );
 }
 

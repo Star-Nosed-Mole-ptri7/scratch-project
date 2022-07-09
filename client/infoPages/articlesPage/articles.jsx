@@ -1,6 +1,9 @@
 import React from 'react';
 import ArticleItem from './articleItem.jsx';
 import './articles.css';
+const apiKey = "abc"
+
+// process.env.REACT_APP_ARTICLE_API_KEY
 
 class Articles extends React.Component {
   constructor(props) {
@@ -22,7 +25,7 @@ class Articles extends React.Component {
     'searchIn=title&' +
     'pageSize=10&' +
     'language=en&' +
-    'apiKey=a85866a923434952b2da0b51bea08454';
+    `apiKey=${apiKey}`;
 
     var req = new Request(url);
 

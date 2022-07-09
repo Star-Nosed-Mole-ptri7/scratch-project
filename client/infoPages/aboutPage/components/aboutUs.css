@@ -4,19 +4,20 @@
     grid-template-rows: repeat(2,.5fr);
     grid-gap: 10em;
     font-size: xx-large;
+    width: 150px;
+    margin-left: 500px;
+    align-items: center;
 }
 
 /* GOAL'S CONTAINER */
 .goalContainer{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1em;
+    grid-template-columns: repeat(2, .4fr);
     margin-bottom: 250px;
 }
 
-.goalContainer #text:hover{
-    -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+.goalContainer #text{
+    font-size: x-large
 }
 
 .goalContainer #img{
@@ -27,21 +28,39 @@
 
 /* ANDY'S CONTAINER */
 
+#andyName{
+    text-align: center;
+}
+
 .andyContainer{
     display:flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
 }
 
-.andyContainer #text{
-    margin-left: 150px;
+.andyContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.andyTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.andyTextAndName #text {
+    margin-top:0px;
     font-size: large;
+    width: 500px;
 }
 
 .andyContainer #img{
+    right: 500px;
     margin-left: 150px;
     margin-right: 150px;
-    width:500px; height:500px;
+    width:300px; height:300px;
 }
 
 /* BRANDON'S CONTAINER */
@@ -54,6 +73,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
 }
 
 .brandonContainer .textAndName{
@@ -70,6 +90,7 @@
 .brandonTextAndName #text {
     margin-top:0px;
     font-size: large;
+    width: 500px;
 }
 
 .brandonContainer #img{
@@ -80,7 +101,6 @@
 }
 
 
-
 #jessicaName{
     text-align: center;
 }
@@ -89,6 +109,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
 }
 
 .jessicaContainer .textAndName{
@@ -105,6 +126,7 @@
 .jessicaTextAndName #text {
     margin-top:0px;
     font-size: large;
+    width: 500px;
 }
 
 .jessicaContainer #img{
@@ -125,6 +147,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
 }
 
 .marioContainer .textAndName{
@@ -141,6 +164,7 @@
 .marioTextAndName #text {
     margin-top:0px;
     font-size: large;
+    width: 500px;
 }
 
 .marioContainer #img{
@@ -161,6 +185,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
 }
 
 .markContainer .textAndName{
@@ -177,6 +202,7 @@
 .markTextAndName #text {
     margin-top:0px;
     font-size: large;
+    width: 500px;
 }
 
 .markContainer #img{
