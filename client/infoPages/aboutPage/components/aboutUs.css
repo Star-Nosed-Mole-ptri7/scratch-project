@@ -1,0 +1,213 @@
+
+.TeamContainer{
+    display:grid;
+    grid-template-rows: repeat(2,.5fr);
+    grid-gap: 10em;
+    font-size: xx-large;
+    width: 150px;
+    margin-left: 500px;
+    align-items: center;
+}
+
+/* GOAL'S CONTAINER */
+.goalContainer{
+    display:grid;
+    grid-template-columns: repeat(2, .4fr);
+    margin-bottom: 250px;
+}
+
+.goalContainer #text{
+    font-size: x-large
+}
+
+.goalContainer #img{
+    margin-left: 150px;
+    width:700px; height:700px;
+    box-shadow: 1px 1px 12px rgb(128, 128, 128);
+}
+
+/* ANDY'S CONTAINER */
+
+#andyName{
+    text-align: center;
+}
+
+.andyContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
+}
+
+.andyContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.andyTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.andyTextAndName #text {
+    margin-top:0px;
+    font-size: large;
+    width: 500px;
+}
+
+.andyContainer #img{
+    right: 500px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:300px; height:300px;
+}
+
+/* BRANDON'S CONTAINER */
+
+#brandonName{
+    text-align: center;
+}
+
+.brandonContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
+}
+
+.brandonContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.brandonTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.brandonTextAndName #text {
+    margin-top:0px;
+    font-size: large;
+    width: 500px;
+}
+
+.brandonContainer #img{
+    right: 500px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:300px; height:300px;
+}
+
+
+#jessicaName{
+    text-align: center;
+}
+
+.jessicaContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
+}
+
+.jessicaContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.jessicaTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.jessicaTextAndName #text {
+    margin-top:0px;
+    font-size: large;
+    width: 500px;
+}
+
+.jessicaContainer #img{
+    right: 500px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:300px; height:300px;
+}
+
+
+
+
+#marioName{
+    text-align: center;
+}
+
+.marioContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
+}
+
+.marioContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.marioTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.marioTextAndName #text {
+    margin-top:0px;
+    font-size: large;
+    width: 500px;
+}
+
+.marioContainer #img{
+    right: 500px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:300px; height:300px;
+}
+
+
+
+
+#markName{
+    text-align: center;
+}
+
+.markContainer{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 12px rgb(100, 96, 96)
+}
+
+.markContainer .textAndName{
+    display:grid;
+    grid-template-column: repeat(1,1fr);;
+}
+
+.markTextAndName #name {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: xxx-large;
+}
+
+.markTextAndName #text {
+    margin-top:0px;
+    font-size: large;
+    width: 500px;
+}
+
+.markContainer #img{
+    right: 500px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width:300px; height:300px;
+}

@@ -1,5 +1,23 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+// const webpack = require('webpack');
+
+
+// module.exports = (env) => {
+
+
+//   // This is reducing the whole .env object into one JSON parsed file.
+//   const envKeys = Object.keys(env).reduce((prev, next) => {
+//     prev[`process.env.${next}`] = JSON.stringify(env[next]);
+//     return prev;
+//   }, {});
+
+//   return {
+//     plugins: [
+//       new webpack.DefinePlugin(envKeys)
+//     ]
+//   };
+// };
 
 module.exports = {
   entry: path.resolve(__dirname, 'client', 'index.js'),
@@ -11,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -32,5 +50,13 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin({
     template: './client/index.html'
-  })]
+  })],
+
+  devServer: {
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
+  },
+  devtool: 'inline-source-map'
 };

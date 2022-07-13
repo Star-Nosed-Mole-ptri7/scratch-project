@@ -1,0 +1,94 @@
+/* Below is start of CSS for the Map Button, Zipcode Input box, and Map display */
+
+
+.box {
+    display: flex;
+    margin-top: 250px;
+    justify-content: center;
+}
+
+.Map {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.Map #map {
+  display:flex;
+  height: 750px;
+  width: 750px
+
+}
+
+.box #zipbox {
+    width: 600px;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 24px;
+}
+
+ .box #zipboxsubmit {
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    font-size: xxx-large;
+
+}
+
+
+
+/* Is the item recycable? */
+.itemRecycle {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xxx-large;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+
+
+
+/* This is the css for the item container */
+.ItemContainer {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Global Card */
+.ItemContainer .itemCard {
+    display:grid;
+    grid-template-columns: repeat(2, .4fr);
+    gap:50px;
+}
+
+.ItemContainer .itemCard #itemCardContent {
+    display:flex;
+    align-items: center;
+    height: 600px;
+    width:600px;
+    font-size: xxx-large;
+    box-shadow: 4px 4px 4px 4px rgba(127, 127, 127, 0.5);
+}
+
+.ItemContainer .itemCard #itemImg {
+    display:flex;
+    margin-left: 0px;
+    height: 600px;
+    width:600px;
+    box-shadow: 4px 4px 4px 4px rgba(157, 157, 157, 0.5);
+
+}
+
+
+.ItemContainer #itemImg {
+    display:flex;
+    height: max-width(100px);
+
+}
+
+
+

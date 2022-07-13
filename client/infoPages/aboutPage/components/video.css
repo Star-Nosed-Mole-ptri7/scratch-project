@@ -1,0 +1,28 @@
+
+.container {
+    position: relative;
+    display: flex;
+    height: 500px;
+    margin-bottom: 100px;
+    background-position: 50% 20%;
+  }
+
+.container #myVideo {
+  display:flex;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}  
+
+  /* Bottom right text */
+  .container .overlay {
+    display: flex;
+    position: absolute;
+    text-align: center;
+    bottom: 20%;
+    right:25%;
+    left: 25%;
+    background-color: rgba(151, 158, 155, .3);
+    color: rgb(255, 255, 255);
+    font-size: xxx-large;
+  }

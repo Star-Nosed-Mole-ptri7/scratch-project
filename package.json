@@ -1,24 +1,34 @@
 {
-  "name": "solo-project",
+  "name": "scratch-project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "webpack",
-    "dev": "webpack serve"
+    "dev": "concurrently \"webpack serve\" \"nodemon server/server.js\""
   },
   "author": "Mark Alexander",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@googlemaps/js-api-loader": "^1.14.3",
     "axios": "^0.27.2",
-    "dotenv": "^16.0.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
+    "js-cookie": "^3.0.1",
     "pg": "^8.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
+    "react-transition-group": "^4.4.2",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "url-loader": "^4.1.1",
     "webpack": "^5.73.0"
   },
   "devDependencies": {
@@ -26,11 +36,24 @@
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
     "babel-loader": "^8.2.5",
+    "concurrently": "^7.2.2",
     "css-loader": "^6.7.1",
+    "dotenv-webpack": "^8.0.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.18",
+    "react-error-overlay": "^6.0.11",
     "style-loader": "^3.3.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Star-Nosed-Mole-ptri7/scratch-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Star-Nosed-Mole-ptri7/scratch-project/issues"
+  },
+  "homepage": "https://github.com/Star-Nosed-Mole-ptri7/scratch-project#readme",
+  "description": ""
 }
