@@ -22,14 +22,14 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' }
+    message: 'An error occurred'
   };
   // Merge err with default err (preserving err)
   const errorObj = Object.assign({}, defaultErr, err);
   // Server-side log of the error
   console.log(errorObj.log);
   // Client-side log of the error
-  return res.status(errorObj.status).json({ status: errorObj.status, ...errorObj.message });
+  return res.status(errorObj.status).json({ status: errorObj.status, message: errorObj.message });
 });
 
 
