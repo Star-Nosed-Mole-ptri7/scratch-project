@@ -10,7 +10,11 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/user', userRouter);
+// Endpoints
+app.use('/api/user', userRouter); // User endpoints
+
+// 404 Error Handler
+app.use((req, res) => res.sendStatus(404));
 
 // Global Error Handler
 app.use((err, req, res, next) => {
