@@ -23,7 +23,6 @@ userController.getUser = (req, res, next) => {
     }));
 };
 
-// 👀 TODO: Use with JWT 👀
 userController.createUser = async (req, res, next) => {
   // Desctructure info needed to register a new user from the request body
   const { firstName, lastName, email, password } = req.body;
@@ -51,7 +50,6 @@ userController.createUser = async (req, res, next) => {
     }));
 };
 
-// 👀 TODO: Use with JWT 👀
 userController.loginUser = (req, res, next) => {
   // Destructure email and password from the request body
   const { email, password } = req.body;
@@ -66,6 +64,7 @@ userController.loginUser = (req, res, next) => {
         // Compare the request password with the hashed password for this user
         const valid = await bcrypt.compare(password, userData.password);
         if (valid) { // The password was correct
+          res.locals.userData = userData; // Persist userData for next middleware to use
           return next(); // Continue to next middleware
         } else { // The password was incorrect
           // Respond with a 404 informing the front-end that the password does not exist
