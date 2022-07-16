@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,14 +17,26 @@ import "../style.css";
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({ setLoggedIn }) {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    axios.post('./', {
+        email,
+        password
+      })
+      .then((res) => {
+        setEmail('');
+        setPassword('')
+        setLoggedIn(true)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   };
 
   return (
@@ -69,10 +82,6 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -83,7 +92,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#/Signup" variant="body2">
+                <Link href="#/Signup" variant="body2" sx={{color: '#228B22'}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,14 +16,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style.css";
 import axios from 'axios';
 
-const [email, setEmail] = React.useState('')
-const [password, setPassword] = React.useState('')
-const [firstName, setFirstName] = React.useState('')
-const [lastName, setLastName] = React.useState('')
-
 const theme = createTheme();
 
 export default function SignUp() {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [successful, setSuccessful] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault();
     
@@ -35,8 +38,10 @@ export default function SignUp() {
     .then((res) => {
       setEmail('');
       setFirstName('');
-      setEmail('')
+      setLastName('')
       setPassword('')
+      setSuccessful('You have successfully signed up')
+
     })
     .catch((error) => {
       console.log(error)
@@ -123,9 +128,10 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
+            <div style={{color: 'black', backgroundColor: "red", animationName: "example", animationDuration: "4s", animationIterationCount: 15, borderRadius: 10, maxWidth: "250px", paddingLeft: 6 }}>{successful}</div>
             <Grid container justifyContent="flex-start">
               <Grid item>
-                <Link href="#/Login" variant="body2">
+                <Link href="#/Login" variant="body2" sx={{color: '#228B22'}}>
                   Already have an account? Sign in
                 </Link>
               </Grid>
