@@ -15,14 +15,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style.css";
 import axios from 'axios';
 
-const [email, setEmail] = React.useState('')
-const [password, setPassword] = React.useState('')
-const [firstName, setFirstName] = React.useState('')
-const [lastName, setLastName] = React.useState('')
 
 const theme = createTheme();
 
 export default function SignUp() {
+
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [firstName, setFirstName] = React.useState('')
+  const [lastName, setLastName] = React.useState('')
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     

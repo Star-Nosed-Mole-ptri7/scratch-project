@@ -1,23 +1,57 @@
-import React from 'react';
+import * as React from 'react';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import '../style.css'; //test this
 import { Link } from 'react-router-dom';
+import Home from './Home.jsx';
+import Car from './Car.jsx';
+import Bike from './Bike.jsx';
+
 
 const CarbonOptions = () => {
+  const [compareValue, setComparison] = React.useState('');
 
+  // Sets state with comparison option
+  const handleChange = (event, newCompare) => {
+    setComparison(newCompare);
+  };
+
+  const renderBox = () => {
+    if (compareValue == "car"){
+      return (
+        <Car />
+      )
+    }
+
+    if (compareValue == "bike"){
+      return (
+        <Bike />
+      )
+    }
+
+    if (compareValue == "home"){
+      return (
+        <Home />
+      )
+    }
+  }
 
   return (
-    <div class="mdc-card__actions mdc-card__actions--full-bleed" >
-      <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-        aria-pressed="false"
-        aria-label="Add to favorites"
-        title="Add to favorites">
-        <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
-        <i class="material-icons mdc-icon-button__icon">favorite_border</i>
-      </button>
-      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
-      <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+    <div>
+      <ToggleButtonGroup
+      color="primary"
+      value={compareValue}
+      exclusive
+      onChange={handleChange}
+      >
+        <ToggleButton value="car">Car Travel</ToggleButton>
+        <ToggleButton value="bike">Motor Bike</ToggleButton>
+        <ToggleButton value="home">Home Energy</ToggleButton>
+      </ToggleButtonGroup>
+      {renderBox()}
     </div>
-  )
+  );
 }
+
 
 export default CarbonOptions;
