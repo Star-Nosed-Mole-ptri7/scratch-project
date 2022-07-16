@@ -10,10 +10,14 @@
   "author": "Mark Alexander",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@googlemaps/js-api-loader": "^1.14.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.0",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
@@ -28,7 +32,7 @@
     "react-transition-group": "^4.4.2",
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2",
-    "url-loader": "^4.1.1",
+    "styled-components": "^5.3.5",
     "webpack": "^5.73.0"
   },
   "devDependencies": {
@@ -44,6 +48,7 @@
     "nodemon": "^2.0.18",
     "react-error-overlay": "^6.0.11",
     "style-loader": "^3.3.1",
+    "url-loader": "^4.1.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2"
   },

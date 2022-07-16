@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+ }
+ .tag {
+    float: "left";
+    position: absolute;
+    left: 40%;
+    top: 12%;
+    z-index: 1000;
+ }
