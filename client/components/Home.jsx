@@ -53,9 +53,29 @@ const Home = () => {
   
     // Function that will submit the data to the API Request
     const handleSubmit = () => {
-      // Need API Request Here
+      
       console.log('KWH', KWH);
       console.log('Country', country);
+
+      // Need API Request Here
+      const data = { 'consumption': KWH, 'location': country };
+
+      fetch('https://app.trycarbonapi.com/api/traditionalHydro', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer API_KEY`,
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        console.log(data.carbonEquivalent);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     }
   
     return (
@@ -65,7 +85,7 @@ const Home = () => {
           sx={{'& > :not(style)': { m: 1, width: '25ch' },}}
           noValidate
           autoComplete="off" >
-          <h1>Home Energy Carbon Footprint Comparison</h1>
+          <h1>Carbon Footprint Comparison: Home Energy</h1>
           <TextField 
           id="outlined-basic" 
           label="Required" 
@@ -92,7 +112,7 @@ const Home = () => {
             ))}
           </TextField>
           <Stack direction="row" spacing={2}>
-            <Button variant="contained" onSubmit={handleSubmit()}>Submit</Button>
+            <Button variant="contained" onClick={handleSubmit()}>Submit</Button>
           </Stack>
       </div>
     );

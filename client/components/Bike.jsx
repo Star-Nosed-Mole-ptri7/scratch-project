@@ -34,9 +34,29 @@ const Bike = () => {
   };
 
   const handleSubmit = () => {
-    // Need API Request Here
+    
     console.log('Mile Value', mileValue);
-    console.log('Country', bikeType)
+    console.log('Country', bikeType);
+
+    // Need API Request Here
+    const data = { 'distance': mileValue, 'type': bikeType };
+
+    fetch('https://app.trycarbonapi.com/api/motorBike', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer API_KEY`,
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      console.log(data.carbonEquivalent);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 
   return (
@@ -47,7 +67,7 @@ const Bike = () => {
         noValidate
         autoComplete="off"
       >
-        <h1>Motor Bike Carbon Footprint Comparison</h1>
+        <h1>Carbon Footprint Comparison: Motor Bike</h1>
         <TextField 
         id="outlined-basic" 
         label="Required" 
@@ -73,7 +93,7 @@ const Bike = () => {
           ))}
         </TextField>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" onSubmit={handleSubmit()}>Submit</Button>
+          <Button variant="contained" onClick={handleSubmit()}>Submit</Button>
         </Stack>
     </div>
   );

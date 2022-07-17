@@ -14,7 +14,7 @@ export default function Body() {
     <source src={sample} type='video/mp4' />
     </video>
     <Outlet />
-    {/* <CarbonOptions /> */}
+    <CarbonOptions />
     </div>
     )
 }
