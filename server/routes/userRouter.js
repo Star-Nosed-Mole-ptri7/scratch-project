@@ -1,57 +1,33 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const userController = require('../controllers/userController');
-const cookieController = require('../controllers/cookieController');
+const tokenController = require('../controllers/tokenController');
 
 const router = express.Router();
 
-router.get('/:name', userController.getUser, (req, res) => {
+// TODO: Will we ever need this? Can we get everything at login? 👀
+router.get('/:id', userController.getUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
-
-router.get('/search/:name', userController.searchItem, (req, res) => {
-  console.log('search route working!')
-  res.status(200).send(res.locals.data)
-})
 
 router.post('/signup', userController.createUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
 
-router.post('/login', userController.loginUser, userController.createSession, cookieController.setCookie, (req, res) => {
-  return res.status(200).send(res.locals);
+router.post('/login', userController.loginUser, (req, res) => {
+  // Create a jwt signed token upon successful login
+  const token = jwt.sign(
+    { userData: res.locals.userData }, // User info (user_id, email, hashed password, name_first, name_last, created at)
+    process.env.ACCESS_TOKEN_SECRET, // Secret token
+    { expiresIn: '10m' } // Token expires in 10 minutes (can change later)
+  );
+  res.cookie('token', token, { httpOnly: true }); //creates a cookie
+  res.status(200).json(res.locals.userData); 
 });
 
-router.post('/checkSession', userController.checkSession, userController.sendSessionData, (req, res) => {
+// TODO: Should delete be using request body instead of request params?
+router.delete('/:name', tokenController.verifyToken, userController.deleteUser, (req, res) => {
   return res.status(200).send(res.locals);
 });
-
-router.post('/removeSession', userController.removeSession, (req, res) => {
-  return res.status(200).send(res.locals);
-});
-
-router.delete('/:name', userController.deleteUser, (req, res) => {
-  return res.status(200).send(res.locals);
-});
-
-router.get('/search', (req,res) => {
-  console.log('this is the search endpoint')
-})
-
-//STRETCH FEATURE//
-// router.patch('/', userController.editUser, (req, res) => {
-//   return res.status(200).send(res.locals)
-// });
-
-
-
-//front end routes for  search bar
-router.get('/search/:item_name', userController.searchItem, (req, res) => {
-  //save data from db into res.locals
-  console.log(req.params)
-  let returnedData = res.locals.dbReturn;
-
-  return res.status(200).send(returnedData)
-})
-
 
 module.exports = router;

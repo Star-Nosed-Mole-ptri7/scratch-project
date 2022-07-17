@@ -29,9 +29,9 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    axios.post('./', {
-      first_name: firstName,
-      last_name: lastName,
+    axios.post('/api/user/signup', {
+      firstName,
+      lastName,
       email,
       password
     })
@@ -125,6 +125,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, background: "linear-gradient(to right bottom, #3ce666, #1957c2)" }}
+              onSubmit={() => handleSubmit}
             >
               Sign Up
             </Button>

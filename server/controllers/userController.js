@@ -1,175 +1,115 @@
-const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
+const db = require('../db.js');
 
-
-const pool = new Pool({
-  connectionString: "postgres://otuxrvdv:Q1-zrxVqaZ9l9P2EGT6IxS2SsH2Frp_p@heffalump.db.elephantsql.com/otuxrvdv",
-});
-
-const userController = {};
+const userController = {}; // Populated with middleware functions then exported
 
 userController.getUser = (req, res, next) => {
+  // Destructure email from request parameters
+  const { id } = req.params;
 
-  pool.query(`SELECT * FROM "user" 
-            WHERE user_name = '${req.params.name}'`) 
+  // Construct a query to get the user's info from the database
+  const values = [ id ];
+  const query = 'SELECT * FROM user WHERE pk_user_id = $1';
+  db.query(query, values) 
     .then((data) => {
-      res.locals = data.rows;
-      return next();
+      // Save the user's data to be used later
+      const userData = data.rows[0];
+      res.locals.userData = userData;
+      return next(); // Continue to next middleware
     })
-    .catch((err) => {
-      return next(console.log(err));
-    });
+    .catch((err) => next({
+      log: 'An error occured while retrieving a user data',
+      message: err.message,
+    }));
 };
 
-userController.createUser =  (req, res, next) => {
-  const {first_name, last_name, user_name, password} = req.body;
-  const hash = bcrypt.hash(password, 10)
-  .then((hash) => {
-    const values = [first_name, last_name, user_name, hash];
-    const text = `INSERT INTO "user" (first_name, last_name, user_name, password, recycle_progress)` +
-                  `VALUES ($1, $2, $3, $4, 0)`;
-  
-    pool.query(text, values)
-      .then((data) => {
-        res.locals = data.rows;
-        return next();
-      })
-      .catch((err) => {
-        return next(console.log(err));
-      });
-    });
+userController.createUser = async (req, res, next) => {
+  // Desctructure info needed to register a new user from the request body
+  const { firstName, lastName, email, password } = req.body;
+
+  // Encrypt password with a salt factor of 10
+  const hash = await bcrypt.hash(password, 10);
+
+  // Create a timestamp leveraging the postgres to_timestamp function
+  const timestamp = `to_timestamp(${Date.now()} / 1000.0)`;
+
+  // Construct a query to register a new user to the database
+  const values = [ firstName, lastName, email, hash ];
+  const query = 'INSERT INTO users (name_first, name_last, email, password, user_created_at) ' +
+               `VALUES ($1, $2, $3, $4, ${timestamp}) RETURNING pk_user_id`;
+  db.query(query, values)
+    .then((data) => {
+      // Save the user's id to be used by JWT for session token auth
+      const userId = data.rows[0].pk_user_id;
+      res.locals.userId = userId;
+      return next(); // Continue to next middleware
+    })
+    .catch((err) => next({
+      log: 'An error occured while creating a user',
+      message: err.message,
+    }));
 };
 
 userController.loginUser = (req, res, next) => {
-  const {user_name, password} = req.body;
-  const text = `select * from "user" where user_name = '${user_name}'`;
+  // Destructure email and password from the request body
+  const { email, password } = req.body;
 
-  pool.query(text)
-    .then((data) => {
-      res.locals = data.rows;
-      if (data.rows[0]) {
-        bcrypt.compare(password, data.rows[0].password)
-          .then((result) => {
-            if (result) {
-              console.log("Successful login");
-              return next();
-            } else {
-              console.log("Invalid login");
-              return res.send([{'user_name': null}]);
-            }
-          })
+  // Construct a query to retrieve a user's password for verification
+  const values = [ email ]
+  const query = `SELECT * FROM users WHERE email = $1`;
+  db.query(query, values)
+    .then(async (data) => {
+      const userData = data.rows[0];
+      if (userData) {
+        // Compare the request password with the hashed password for this user
+        const valid = await bcrypt.compare(password, userData.password);
+        if (valid) { // The password was correct
+          res.locals.userData = userData; // Persist userData for next middleware to use
+          return next(); // Continue to next middleware
+        } else { // The password was incorrect
+          // Respond with a 404 informing the front-end that the password does not exist
+          return next({
+            log: 'A user provided an incorrect password upon login',
+            message: 'Invalid password',
+            status: 404
+          });
+        }
         } else {
-          return res.send([{'user_name': null}]);
+          // Respond with a 404 informing the front-end that the email does not exist
+          return next({
+            log: 'A user provided an incorrect email upon login',
+            message: 'Invalid email',
+            status: 404
+          });
         }
     })
-    .catch((err) => {
-      return next(console.log(err));
-    });
+    .catch((err) => next({
+      log: 'An error occured while trying to verify a user\'s password',
+      message: err.message,
+    }));
 };
-
-userController.createSession = (req, res, next) => {
-  const { user_name } = req.body;
-  const text = 'INSERT INTO "sessions" (session_id)' +
-                `VALUES ('${user_name}')`;
-  pool.query(text)
-    .then((data) => {
-      return next();
-    })
-    .catch((err) => {
-      if (err.code === '23505') {
-        return next();
-      }
-      return next(console.log(err));
-    });
-};
-
-userController.checkSession = (req, res, next) => {
-  const { session_id } = req.body;
-  const text = `select * from sessions where session_id = '${session_id}'`;
-  pool.query(text)
-    .then((data) => {
-      res.locals = data.rows;
-      return next();
-    })
-    .catch((err) => {
-      return next(console.log(err));
-    });
-};
-
-userController.sendSessionData = (req, res, next) => {
-  if (!res.locals[0]) {
-    return next();
-  }
-  const { session_id } = req.body;
-  const text = `select * from "user" where user_name = '${session_id}'`;
-  pool.query(text)
-    .then((data) => {
-      res.locals = data.rows;
-      return next();
-    })
-    .catch((err) => {
-      return next(console.log(err));
-    });
-  };
-
-  userController.removeSession = (req, res, next) => {
-    const { session_id } = req.body;
-    const text = `delete from sessions where session_id = '${session_id}'`;
-    pool.query(text)
-      .then((data) => {
-        res.locals = data.rows;
-        return next();
-      })
-      .catch((err) => {
-        return next(console.log(err));
-      });
-  };
-
 
 userController.deleteUser = (req, res, next) => {
+  // Destructure name from the parameters
+  const { name } = req.params;
 
-  const text = `DELETE FROM "user" WHERE user_name = '${req.params.name}'`
-  pool.query(text)
+  // Construct a query to delete a user where the names match
+  const values = [ name ];
+  const query = `DELETE FROM users WHERE name_first = $1`;
+  db.query(query, values)
     .then((data) => {
-      if(!data) return next ({message: 'User cannot be deleted'}) 
-      return next();
+      // Respond with a 404 informing the front-end that the user does not exist
+      if (!data) return next({
+        log: 'User was not found',
+        message: 'User cannot be deleted',
+        status: 404
+      });
+      return next(); // Continue to next middleware
     })
-    .catch((err) => {
-      return next(console.log(err));
-    });
+    .catch((err) => next({
+      log: 'An error occured while deleting a user',
+      message: err.message,
+    }));
 };
-
-
-
-//STRETCH FEATURE//
-// userController.updateUser = (req, res, next) => {
-
-// const {password} = req.body;
-// const values = [password];
-// const text = `UPDATE "user"
-//               SET password = ${password}
-//               WHERE user_name = ${req.params.name}`
-// pool.query(text, values)
-//     .then((data) => {
-//       console.log(data.rows);
-//       res.locals = data.rows;
-//       return next();
-//     })
-//     .catch((err) => {
-//       return next(console.log(err));
-//     });
-// };
-
-userController.searchItem = (req, res, next) => {
-  console.log(req.params.name)
-  pool.query(`SELECT * FROM "recycled items" WHERE item_name='${req.params.name}'`)
-    .then((data) => {res.locals.data = data
-      return next()
-    })
-    .catch((err) => {
-      return next(console.log(err));
-    });
-}
-
 
 module.exports = userController;
