@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const userRouter = require('./routes/userRouter');
+const socialRouter = require('./routes/socialRouter');
 
 app.use(cors({ origin: true }));
 app.use(express.json());
@@ -12,6 +12,7 @@ app.use(cookieParser());
 
 // Endpoints
 app.use('/api/user', userRouter); // User endpoints
+app.use('/api/social', socialRouter); // Social endpoints (posts)
 
 // 404 Error Handler
 app.use((req, res) => res.sendStatus(404));
