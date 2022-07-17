@@ -2,16 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 const Car = () => {
-
-  // Need API Request Here
-
-  const [carType, setCarType] = React.useState('');
-
-  const handleChange = (event) => {
-    setCarType(event.target.value);
-  };
 
   const carOptions = [
     {
@@ -84,28 +78,50 @@ const Car = () => {
     }
   ]
 
+  // Sets state with inputed car type and # miles weekly
+  const [carType, setCarType] = React.useState('');
+  const [mileValue, setMileValue] = React.useState('');
+
+  // Function that handles onChange event (as you type)
+  const handleChange1 = (event) => {
+    setMileValue(event.target.value);
+  };
+
+  const handleChange2 = (event) => {
+    setCarType(event.target.value);
+  }
+
+  // Function that will submit the data to the API Request
+  const handleSubmit = () => {
+    // Need API Request Here
+    console.log('Mile Value', mileValue);
+    console.log('Car Type', carType);
+  }
+
   return (
     <div>
       <Box
         component="form"
         sx={{'& > :not(style)': { m: 1, width: '25ch' },}}
         noValidate
-        autoComplete="off"
-      >
+        autoComplete="off" >
         <h1>Car Carbon Footprint Comparison</h1>
         <TextField 
         id="outlined-basic" 
         label="Required" 
         variant="outlined" 
         helperText="Please input your weekly driving distance in kilometers"
+        value={mileValue}
+        onChange={handleChange1}
         placeholder='weekly mileage (km)'/>
+        
         </Box>
         <TextField
         id="outlined-select-currency"
         select
         label="Select"
         value={carType}
-        onChange={handleChange}
+        onChange={handleChange2}
         helperText="Please select your vehicle"
         placeholder='vehicle type'
         >
@@ -115,6 +131,9 @@ const Car = () => {
             </MenuItem>
           ))}
         </TextField>
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" onSubmit={handleSubmit()}>Submit</Button>
+        </Stack>
     </div>
   );
 }

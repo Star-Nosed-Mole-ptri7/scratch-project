@@ -2,16 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 const Bike = () => {
-
-  // Need API Request Here
-
-  const [bikeType, setBikeType] = React.useState('');
-
-  const handleChange = (event) => {
-    setBikeType(event.target.value);
-  };
 
   const bikeOptions = [
     {
@@ -28,6 +22,23 @@ const Bike = () => {
     }
   ]
 
+  const [mileValue, setMileValue] = React.useState('');
+  const [bikeType, setBikeType] = React.useState('');
+
+  const handleChange1 = (event) => {
+    setMileValue(event.target.value);
+  };
+
+  const handleChange2 = (event) => {
+    setBikeType(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Need API Request Here
+    console.log('Mile Value', mileValue);
+    console.log('Country', bikeType)
+  }
+
   return (
     <div>
       <Box
@@ -42,6 +53,8 @@ const Bike = () => {
         label="Required" 
         variant="outlined" 
         helperText="Please input your weekly driving distance in kilometers"
+        value={mileValue}
+        onChange={handleChange1}
         placeholder='weekly mileage (km)'/>
         </Box>
         <TextField
@@ -49,7 +62,7 @@ const Bike = () => {
         select
         label="Select"
         value={bikeType}
-        onChange={handleChange}
+        onChange={handleChange2}
         helperText="Please select your motor bike type"
         placeholder='motor bike type'
         >
@@ -59,6 +72,9 @@ const Bike = () => {
             </MenuItem>
           ))}
         </TextField>
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" onSubmit={handleSubmit()}>Submit</Button>
+        </Stack>
     </div>
   );
 }
