@@ -4,6 +4,7 @@ import ButtonAppBar from "./components/Nav.jsx";
 import Body from "./components/Body.jsx";
 import SignUp from "./components/Signup.jsx";
 import SignIn from "./components/Login.jsx";
+import Bodywriting from "./components/Bodywriting.jsx";
 
 
 const App = () => {
@@ -14,7 +15,7 @@ const App = () => {
             <div>
                 <Routes>
                     <Route path='/' element={<ButtonAppBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}>
-                        <Route path='/login' element={<Body />}>
+                        <Route path='/feed' element={<Body />}>
                         </Route>
                         <Route path='/*' element={<Navigate to='/' replace={true} />} />
                     </Route>
@@ -29,10 +30,13 @@ const App = () => {
             <Routes>
                 <Route path='/' element={<ButtonAppBar loggedIn={loggedIn}/>}>
                     <Route path='/' element={<Body />}>
+                        <Route path='/' exact element={<Bodywriting />}>
+                        </Route>
                         <Route path='/Signup' element={<SignUp />}>
                         </Route>
                         <Route path='/Login' element={<SignIn setLoggedIn={setLoggedIn}/>}>
                         </Route>
+                        <Route path='/*' element={<Navigate to='/' replace={true} />} />
                     </Route>
                 </Route>
             </Routes>

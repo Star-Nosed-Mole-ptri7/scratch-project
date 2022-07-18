@@ -21,10 +21,10 @@ export default function ButtonAppBar({ loggedIn, setLoggedIn }) {
               <AppBar sx={{background: "linear-gradient(to right bottom, #3ce666, #1957c2)", borderRadius: 1}} position="static">
                 <Toolbar >
                 <img src={myLogo} alt="logo" height= "40px" style={{marginLeft: "20px"}} />
-                  <Typography variant="h5"  sx={{ flexGrow: 1, marginLeft: 2, marginTop: 0.5, fontFamily: "Helvetica" ,color: "linear-gradient(to right bottom, #3ce666, #1957c2)"}}>
+                  <Typography variant="h5" sx={{ flexGrow: 1, marginLeft: 2, marginTop: 0.5, fontFamily: "Helvetica" ,color: "linear-gradient(to right bottom, #3ce666, #1957c2)"}}>
                     NO PLANET B
                   </Typography>
-                  <Button color="inherit" sx={{marginRight: 4}} component={Link} to='/Login' onClick={()=>{setLoggedIn(false)}}>Logout</Button>
+                  <Button color="inherit" sx={{marginRight: 4}} component={Link} to='/' onClick={()=>{setLoggedIn(false)}}>Logout</Button>
                 </Toolbar>
               </AppBar>
             </Box>

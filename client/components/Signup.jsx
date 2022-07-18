@@ -129,7 +129,7 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <div style={{color: 'black', backgroundColor: "red", animationName: "example", animationDuration: "4s", animationIterationCount: 15, borderRadius: 10, maxWidth: "250px", paddingLeft: 6 }}>{successful}</div>
+            <div style={{color: 'green' }}>{successful}</div>
             <Grid container justifyContent="flex-start">
               <Grid item>
                 <Link href="#/Login" variant="body2" sx={{color: '#228B22'}}>

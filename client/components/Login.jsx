@@ -14,18 +14,21 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style.css";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function SignIn({ setLoggedIn }) {
 
+    let link = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('./', {
+    axios.post('./api/user/login', {
         email,
         password
       })
@@ -33,6 +36,7 @@ export default function SignIn({ setLoggedIn }) {
         setEmail('');
         setPassword('')
         setLoggedIn(true)
+        link(`/feed`)
       })
       .catch((error) => {
         console.log(error)
@@ -71,6 +75,7 @@ export default function SignIn({ setLoggedIn }) {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -81,6 +86,7 @@ export default function SignIn({ setLoggedIn }) {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
