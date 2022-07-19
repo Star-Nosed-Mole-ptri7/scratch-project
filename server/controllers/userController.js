@@ -15,9 +15,9 @@ userController.getUser = (req, res, next) => {
       // Save the user's data to be used later
       const userData = data.rows[0];
       res.locals.userData = userData;
-      return next(); // Continue to next middleware
+      return next(); // On success: continue to next middleware
     })
-    .catch((err) => next({
+    .catch((err) => next({ // On failure: continue to global error handler
       log: 'An error occured while retrieving a user data',
       message: err.message,
     }));
@@ -30,21 +30,14 @@ userController.createUser = async (req, res, next) => {
   // Encrypt password with a salt factor of 10
   const hash = await bcrypt.hash(password, 10);
 
-  // Create a timestamp leveraging the postgres to_timestamp function
-  const timestamp = `to_timestamp(${Date.now()} / 1000.0)`;
 
   // Construct a query to register a new user to the database
   const values = [ firstName, lastName, email, hash ];
   const query = 'INSERT INTO users (name_first, name_last, email, password, user_created_at) ' +
-               `VALUES ($1, $2, $3, $4, ${timestamp}) RETURNING pk_user_id`;
+                'VALUES ($1, $2, $3, $4, $time)';
   db.query(query, values)
-    .then((data) => {
-      // Save the user's id to be used by JWT for session token auth
-      const userId = data.rows[0].pk_user_id;
-      res.locals.userId = userId;
-      return next(); // Continue to next middleware
-    })
-    .catch((err) => next({
+    .then(() => next()) // On success: continue to next middleware function
+    .catch((err) => next({ // On failure: continue to global error handler
       log: 'An error occured while creating a user',
       message: err.message,
     }));
@@ -83,19 +76,27 @@ userController.loginUser = (req, res, next) => {
           });
         }
     })
-    .catch((err) => next({
+    .catch((err) => next({ // On failure: continue to global error handler
       log: 'An error occured while trying to verify a user\'s password',
       message: err.message,
     }));
 };
 
+userController.logoutUser = (req, res, next) => {
+  // Delete the client's jwt auth token stored as a cookie
+  res.clearCookie('token');
+
+  // Continue to the next middleware function
+  return next();
+};
+
 userController.deleteUser = (req, res, next) => {
-  // Destructure name from the parameters
-  const { name } = req.params;
+  // Destructure the user's id from userData
+  const { pk_user_id } = res.locals.userData;
 
   // Construct a query to delete a user where the names match
-  const values = [ name ];
-  const query = `DELETE FROM users WHERE name_first = $1`;
+  const values = [ pk_user_id ];
+  const query = `DELETE FROM users WHERE pk_user_id = $1`;
   db.query(query, values)
     .then((data) => {
       // Respond with a 404 informing the front-end that the user does not exist
@@ -104,9 +105,9 @@ userController.deleteUser = (req, res, next) => {
         message: 'User cannot be deleted',
         status: 404
       });
-      return next(); // Continue to next middleware
+      return next(); // On success: continue to next middleware
     })
-    .catch((err) => next({
+    .catch((err) => next({ // On failure: continue to global error handler
       log: 'An error occured while deleting a user',
       message: err.message,
     }));

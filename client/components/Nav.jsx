@@ -12,12 +12,25 @@ import SignUp from './Signup.jsx';
 import { Link } from 'react-router-dom';
 
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ loggedIn, setLoggedIn }) {
 
-    const [showLogin, setShowLogin] = React.useState(false)
-
-    const openLogin = () => {
-        setShowLogin(!showLogin)
+    if(loggedIn) {
+        return (
+            <div>
+            <Box sx={{ flexGrow: 1 }} >
+              <AppBar sx={{background: "linear-gradient(to right bottom, #3ce666, #1957c2)", borderRadius: 1}} position="static">
+                <Toolbar >
+                <img src={myLogo} alt="logo" height= "40px" style={{marginLeft: "20px"}} />
+                  <Typography variant="h5" sx={{ flexGrow: 1, marginLeft: 2, marginTop: 0.5, fontFamily: "Helvetica" ,color: "linear-gradient(to right bottom, #3ce666, #1957c2)"}}>
+                    NO PLANET B
+                  </Typography>
+                  <Button color="inherit" sx={{marginRight: 4}} component={Link} to='/' onClick={()=>{setLoggedIn(false)}}>Logout</Button>
+                </Toolbar>
+              </AppBar>
+            </Box>
+            <Outlet />
+            </div>
+          );
     }
 
   return (

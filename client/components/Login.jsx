@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,17 +14,33 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style.css";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({ setLoggedIn }) {
+
+    let link = useNavigate();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    axios.post('./api/user/login', {
+        email,
+        password
+      })
+      .then((res) => {
+        setEmail('');
+        setPassword('')
+        setLoggedIn(true)
+        link(`/feed`)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   };
 
   return (
@@ -58,6 +75,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -68,10 +86,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -83,7 +98,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#/Signup" variant="body2">
+                <Link href="#/Signup" variant="body2" sx={{color: '#228B22'}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
