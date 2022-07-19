@@ -51,31 +51,10 @@ const Home = () => {
       setCountry(event.target.value);
     }
   
-    // Function that will submit the data to the API Request
+    // Function that will route to /home in server
     const handleSubmit = () => {
+      //const data = { 'consumption': KWH, 'location': country };
       
-      console.log('KWH', KWH);
-      console.log('Country', country);
-
-      // Need API Request Here
-      const data = { 'consumption': KWH, 'location': country };
-
-      fetch('https://app.trycarbonapi.com/api/traditionalHydro', {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer API_KEY`,
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        console.log(data.carbonEquivalent);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
     }
   
     return (

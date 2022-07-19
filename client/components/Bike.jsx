@@ -33,30 +33,9 @@ const Bike = () => {
     setBikeType(event.target.value);
   };
 
+  // Function that will route to /home in server
   const handleSubmit = () => {
-    
-    console.log('Mile Value', mileValue);
-    console.log('Country', bikeType);
-
-    // Need API Request Here
-    const data = { 'distance': mileValue, 'type': bikeType };
-
-    fetch('https://app.trycarbonapi.com/api/motorBike', {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer API_KEY`,
-      },
-      body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      console.log(data.carbonEquivalent);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    //const data = { 'distance': mileValue, 'type': bikeType };
   }
 
   return (

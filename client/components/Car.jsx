@@ -83,31 +83,31 @@ const Car = () => {
     setCarType(event.target.value);
   }
 
-  // Function that will submit the data to the API Request
-  const handleSubmit = () => {
+  // Function that will route to /car in server
+  const handleSubmit = (event) => {
     
-    console.log('Mile Value', mileValue);
-    console.log('Car Type', carType);
+    // Prevents re-rendering of page
+    event.preventDefault();
 
-    // Need API Request Here
-    const data = { 'distance': mileValue, 'vehicle': carType };
+    //get data necessary for API request and structure it
+    const data = { mileValue, carType };
+    console.log('Data1', data);
 
-    fetch('https://app.trycarbonapi.com/api/carTravel', {
+    //fetch -- POST to backend
+    fetch('/api/stats/car', {
       method: 'POST', 
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer API_KEY`,
+      'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      console.log(data.carbonEquivalent);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Data2 --> ', data)
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   return (
