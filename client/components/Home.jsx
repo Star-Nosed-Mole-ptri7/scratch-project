@@ -112,7 +112,7 @@ const Home = () => {
             ))}
           </TextField>
           <Stack direction="row" spacing={2}>
-            <Button variant="contained" onClick={handleSubmit()}>Submit</Button>
+            <Button variant="contained" onClick={handleSubmit}>Submit</Button>
           </Stack>
       </div>
     );

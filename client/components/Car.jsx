@@ -57,14 +57,6 @@ const Car = () => {
       label: 'Large Diesel Van'
     },
     {
-      value: 'LPGVan',
-      label: 'LPG Van'
-    },
-    {
-      value: 'CNGVan',
-      label: 'CNG Van'
-    },
-    {
       value: 'SmallPetrolCar',
       label: 'Small Petrol Car'
     },
@@ -152,7 +144,7 @@ const Car = () => {
           ))}
         </TextField>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" onClick={handleSubmit()}>Submit</Button>
+          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
         </Stack>
     </div>
   );
