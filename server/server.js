@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+require('dotenv').config();
 
 const userRouter = require('./routes/userRouter');
 const socialRouter = require('./routes/socialRouter');
+const awsRouter = require('./routes/awsRouter');
+const apiRouter = require('./routes/apiRouter');
 
 app.use(cors({ origin: true }));
 app.use(express.json());
@@ -13,6 +16,8 @@ app.use(cookieParser());
 // Endpoints
 app.use('/api/user', userRouter); // User endpoints
 app.use('/api/social', socialRouter); // Social endpoints (posts)
+app.use('/api/image', awsRouter); // AWS endpoints
+app.use('/api/stats', apiRouter) //Api endpoints (posts)
 
 // 404 Error Handler
 app.use((req, res) => res.sendStatus(404));
