@@ -4,8 +4,6 @@ import { Outlet } from "react-router-dom";
 import { Margin } from "@mui/icons-material";
 import "../style.css";
 
-
-
 export default function Body() {
     return (
     <div className="container" href="#/">
