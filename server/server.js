@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const userRouter = require('./routes/userRouter');
 const socialRouter = require('./routes/socialRouter');
+const apiRouter = require('./routes/apiRouter');
 
 app.use(cors({ origin: true }));
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(cookieParser());
 // Endpoints
 app.use('/api/user', userRouter); // User endpoints
 app.use('/api/social', socialRouter); // Social endpoints (posts)
+app.use('/api/stats', apiRouter) //Api endpoints (posts)
 
 // 404 Error Handler
 app.use((req, res) => res.sendStatus(404));

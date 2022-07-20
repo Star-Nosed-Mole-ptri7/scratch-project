@@ -1,3 +1,5 @@
+import carbonFootprint from "./components/CarbonFootprint.jsx";
+import CarbonOptions from "./components/CarbonOptions.jsx";
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ButtonAppBar from "./components/Nav.jsx";
