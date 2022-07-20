@@ -1,14 +1,14 @@
 import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import '../style.css'; //test this
-import { Link } from 'react-router-dom';
+import '../style.css'; 
 import Home from './Home.jsx';
 import Car from './Car.jsx';
 import Bike from './Bike.jsx';
 
 
 const CarbonOptions = () => {
+
   const [compareValue, setComparison] = React.useState('');
 
   // Sets state with comparison option

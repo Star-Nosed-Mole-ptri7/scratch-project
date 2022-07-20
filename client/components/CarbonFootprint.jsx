@@ -6,7 +6,11 @@ import CarbonOptions from './CarbonOptions.jsx';
 const carbonFootprint = () => {
 
   return (
-    <div></div>
+    <div>
+      {/* add Dashboard here */}
+      <CarbonOptions />
+      {/* add Social posts here */}
+    </div>
   )
 }
 

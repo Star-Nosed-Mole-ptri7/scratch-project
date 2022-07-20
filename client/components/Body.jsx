@@ -3,9 +3,6 @@ import sample from "../../background.mp4";
 import { Outlet } from "react-router-dom";
 import { Margin } from "@mui/icons-material";
 import "../style.css";
-import CarbonOptions from './CarbonOptions.jsx';
-
-
 
 export default function Body() {
     return (
@@ -14,7 +11,6 @@ export default function Body() {
     <source src={sample} type='video/mp4'/>
     </video>
     <Outlet />
-    <CarbonOptions />
     </div>
     )
 }
