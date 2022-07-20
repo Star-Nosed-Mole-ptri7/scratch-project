@@ -56,4 +56,31 @@
     }
   }
 
-  
+  .dashboard {
+      border: solid 2px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-content: left;
+      width: 70%;
+  }
+
+  .stats {
+      width: 30%;
+      border: solid 6px;
+      margin-right: 200px
+  }
+
+  .statss {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid transparent; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end 5;
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+  }
