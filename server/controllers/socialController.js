@@ -30,14 +30,14 @@ socialController.getAllPosts = (req, res, next) => {
 
 socialController.createPost = (req, res, next) => {
   // Destructure the message from the request body
-  const { message, statPercent } = req.body;
+  const { message, statPercent, imageUrl } = req.body;
   // Destructure the user id that was decoded from the jwt token
   const { pk_user_id } = res.locals.userData;
 
   // Construct a query to create a new post
-  const values = [ message, statPercent || null, pk_user_id ];
-  const query = 'INSERT INTO posts (message, stat_percent, post_created_at, fk_user_id) ' +
-                'VALUES ($1, $2, $time, $3) ' +
+  const values = [ message, statPercent || null, imageUrl || null, pk_user_id ];
+  const query = 'INSERT INTO posts (message, stat_percent, image_url, post_created_at, fk_user_id) ' +
+                'VALUES ($1, $2, $3, $time, $4) ' +
                 'RETURNING pk_post_id';
   db.query(query, values)
     .then((data) => {
