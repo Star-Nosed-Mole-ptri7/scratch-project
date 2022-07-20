@@ -17,7 +17,8 @@ socialController.getAllPosts = (req, res, next) => {
         lastName: postData.last_name,
         message: postData.message,
         statPercent: postData.stat_percent,
-        createdAt: postData.post_created_at
+        createdAt: postData.post_created_at,
+        imageUrl: postData.image_url
       }));
       res.locals.posts = posts;
       return next(); // On success: continue to next middleware function
