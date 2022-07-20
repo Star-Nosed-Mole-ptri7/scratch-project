@@ -7,17 +7,19 @@ import Body from "./components/Body.jsx";
 import SignUp from "./components/Signup.jsx";
 import SignIn from "./components/Login.jsx";
 import Bodywriting from "./components/Bodywriting.jsx";
+import Chart from "./components/Dashboard.jsx";
 
 
 const App = () => {
     const [loggedIn, setLoggedIn] = useState(false)
+
 
     if (loggedIn) {
         return (
             <div>
                 <Routes>
                     <Route path='/' element={<ButtonAppBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}>
-                        <Route path='/feed' element={<Body />}>
+                        <Route path='/feed' element={<Chart />}> 
                         </Route>
                         <Route path='/*' element={<Navigate to='/' replace={true} />} />
                     </Route>
