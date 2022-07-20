@@ -53,7 +53,24 @@ const Home = () => {
   
     // Function that will route to /home in server
     const handleSubmit = () => {
-      //const data = { 'consumption': KWH, 'location': country };
+      
+      const data = { KWH, country };
+
+      //fetch -- POST to backend
+      fetch('/api/stats/home', {
+        method: 'POST', 
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
       
     }
   

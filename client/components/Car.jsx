@@ -89,9 +89,7 @@ const Car = () => {
     // Prevents re-rendering of page
     event.preventDefault();
 
-    //get data necessary for API request and structure it
     const data = { mileValue, carType };
-    console.log('Data1', data);
 
     //fetch -- POST to backend
     fetch('/api/stats/car', {
@@ -103,7 +101,7 @@ const Car = () => {
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Data2 --> ', data)
+        console.log(data)
       })
       .catch((error) => {
         console.error('Error:', error);
