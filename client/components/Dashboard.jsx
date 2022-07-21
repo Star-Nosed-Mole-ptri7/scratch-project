@@ -76,7 +76,7 @@ import React, { useEffect, useState } from "react";
     }
 
     return (
-        <div className="dashboard" style={{ background: 'linear-gradient(to right bottom, #abf7b1, #D3D3D3	)', opacity: 0.8 }}>
+        <div className="dashboard" style={{ background: 'linear-gradient(to right bottom, #D3D3D3, #abf7b1	)', opacity: 0.8 }}>
             <div className="stats">
             <h3 style={{textAlign: "center"}}>Your Statistics</h3>
             <h5 className="statss" style={{textAlign: "left"}}>{carMessage}</h5>
@@ -84,7 +84,7 @@ import React, { useEffect, useState } from "react";
             <h5 className="statss" style={{textAlign: "left", border: "solid", marginLeft: "0px"}}>{homeMessage}</h5>
             </div>
             <div className="barchart">
-                <BarChart chartData={graphData} options={options} />
+                <BarChart chartData={graphData} options={options} style={{opacity: 0.5}}/>
             </div>
         </div>
     )

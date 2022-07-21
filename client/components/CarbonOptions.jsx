@@ -41,9 +41,10 @@ const CarbonOptions = () => {
   }
 
   return (
-    <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
       <Chart carCarbon={carCarbon} homeCarbon={homeCarbon} bikeCarbon={bikeCarbon} />
-      <div style={{marginTop: "10px"}}>
+      <h3 style={{border: "solid", marginTop: "50px"}}> Hello </h3>
+      <div style={{border: "solid", marginTop: "0px"}}>
       <ToggleButtonGroup
       color="primary"
       value={compareValue}
