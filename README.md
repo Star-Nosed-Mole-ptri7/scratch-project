@@ -37,4 +37,4 @@ Iterating upon Star-Nosed-Mole's [Green Planet Project](https://github.com/Star-
 - External APIs
 
 ## Database Design
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Database_Design](https://i.ibb.co/kxNFdp3/dbdesign.png)
