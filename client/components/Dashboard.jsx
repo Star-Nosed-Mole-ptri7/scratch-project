@@ -3,11 +3,7 @@ import React, { useEffect, useState } from "react";
 
 
 
- export default function Chart( { s } ) {
-
-    let carz = 0.5
-    let homez = 4
-    let xz = 0
+ export default function Chart( { carCarbon, bikeCarbon, homeCarbon } ) {
 
     const [userData, setUserData] = useState()
     const [carData, setCarData] = useState()
@@ -35,30 +31,32 @@ import React, { useEffect, useState } from "react";
         const label = []
         const carAvg = 1;
         const homeAvg = 2;
-        const xAvg = 3;
-        if(carz !== 0) {
+        const bikeAvg = 3;
+        console.log(carCarbon)
+        if(carCarbon !== 0) {
             averages.push(carAvg)
-            userData.push(carz)
+            userData.push(carCarbon)
             label.push('car')
-            setCarMessage(message(carz, carAvg, 'car'))
+            setCarMessage(message(carCarbon, carAvg, 'car'))
         }
-        if (homez !== 0 ) {
+        if (homeCarbon !== 0 ) {
+            console.log(homeCarbon)
             averages.push(homeAvg)
-            userData.push(homez)
+            userData.push(homeCarbon)
             label.push('home')
-            setHomeMessage(message(homez, homeAvg, 'home'))
+            setHomeMessage(message(homeCarbon, homeAvg, 'home'))
         }
-        if (xz !== 0) {
-            averages.push(xAvg)
-            userData.push(xz)
+        if (bikeCarbon !== 0) {
+            averages.push(bikeAvg)
+            userData.push(bikeCarbon)
             label.push('x')
-            setBikeMessage(message(xz, xAvg, 'bike'))
+            setBikeMessage(message(bikeCarbon, bikeAvg, 'bike'))
         }
 
         setAvg(averages)
         setNames(label)
         setUserData(userData)
-    }, [])
+    }, [carCarbon, bikeCarbon, homeCarbon])
 
     let graphData = {
         datasets: [{
@@ -78,7 +76,7 @@ import React, { useEffect, useState } from "react";
     }
 
     return (
-        <div className="dashboard">
+        <div className="dashboard" style={{ background: 'linear-gradient(to right bottom, #abf7b1, #D3D3D3	)', opacity: 0.8 }}>
             <div className="stats">
             <h3 style={{textAlign: "center"}}>Your Statistics</h3>
             <h5 className="statss" style={{textAlign: "left"}}>{carMessage}</h5>

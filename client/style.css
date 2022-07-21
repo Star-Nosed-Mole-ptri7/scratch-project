@@ -70,12 +70,12 @@
       display: flex;
       justify-content: center;
       align-content: left;
-      width: 70%;
+      width: 1100px;
   }
 
   .stats {
-      width: 30%;
-      border: solid 6px;
+      width: 40%;
+      border-right: solid 6px;
       margin-right: 200px
   }
 
@@ -92,3 +92,11 @@
     from, to { border-color: transparent }
     50% { border-color: orange; }
   }
+
+
+  .dashboard2 {
+    position: absolute;
+    left: 3%;
+    top: 5%;
+    z-index: 1000;
+ }
