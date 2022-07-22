@@ -64,4 +64,28 @@
     }
   }
 
-  
+  .dashboard {
+      border: solid 2px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      width: 1100px;
+  }
+
+  .stats {
+      width: 60%;
+      border-right: solid 6px;
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+  }
+
+
+  .dashboard2 {
+    position: absolute;
+    left: 3%;
+    top: 5%;
+    z-index: 1000;
+ }
