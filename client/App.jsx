@@ -21,7 +21,7 @@ const App = () => {
                 <Routes>
                     <Route path='/' element={<ButtonAppBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}>
                         <Route path='/' element={<BodyLogged />}>
-                            <Route path='/' element={<CarbonFootprint />}> 
+                            <Route path='/' exact element={<CarbonFootprint />}> 
                             </Route>
                             <Route path='/*' element={<Navigate to='/' replace={true} />} />
                         </Route>
