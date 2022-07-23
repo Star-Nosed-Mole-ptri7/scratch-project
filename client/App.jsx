@@ -1,44 +1,54 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
-import Navbar from './globalComponents/navbar.jsx';
-import Home from './infoPages/homePage/home.jsx';
-import About from './infoPages/aboutPage/about.jsx';
-import Articles from './infoPages/articlesPage/articles.jsx';
-import Education from './infoPages/educationPage/education.jsx';
-import FAQs from './infoPages/FAQsPage/FAQs.jsx';
-import Item from './infoPages/itemPage/item.jsx';
-import Login from './userPages/loginPage/login.jsx';
-import SignUp from './userPages/signUpPage/signUp.jsx';
-import Volunteer from './userPages/volunteerPage/volunteer.jsx';
-import User from './userPages/userPage/user.jsx';
+import CarbonFootprint from "./components/CarbonFootprint.jsx";
+import CarbonOptions from "./components/CarbonOptions.jsx";
+import React, { useState } from "react";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import ButtonAppBar from "./components/Nav.jsx";
+import Body from "./components/Body.jsx";
+import SignUp from "./components/Signup.jsx";
+import SignIn from "./components/Login.jsx";
+import Bodywriting from "./components/Bodywriting.jsx";
+import Chart from "./components/Dashboard.jsx";
+import BodyLogged from "./components/BodyLogged.jsx";
 
 
+const App = () => {
+    const [loggedIn, setLoggedIn] = useState(false)
 
-class App extends React.Component {
 
-  render() {
+    if (!loggedIn) {
+        return (
+            <div>
+                <Routes>
+                    <Route path='/' element={<ButtonAppBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}>
+                        <Route path='/' element={<BodyLogged />}>
+                            <Route path='/' exact element={<CarbonFootprint />}> 
+                            </Route>
+                            <Route path='/*' element={<Navigate to='/' replace={true} />} />
+                        </Route>
+                    </Route>
+                </Routes>
+            </div>
+        )
+    }
+
+
     return (
-      <Router>
-        <Navbar/>
-        <main>
-        <Routes>
-          <Route path="/" element={<Home />} exact/>
-          <Route path="/about" element={<About />} exact/>
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/faqs" element={<FAQs />} />
-          <Route path="/volunteer" element={<Volunteer />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/User" element={<User />} />
-          <Route path="/Item" element={<Item />} />
-        </Routes>
-        </main>
-      </Router>
-
-    );
-  }
+        <div>
+            <Routes>
+                <Route path='/' element={<ButtonAppBar loggedIn={loggedIn}/>}>
+                    <Route path='/' element={<Body />}>
+                        <Route path='/' exact element={<Bodywriting />}>
+                        </Route>
+                        <Route path='/Signup' element={<SignUp />}>
+                        </Route>
+                        <Route path='/Login' element={<SignIn setLoggedIn={setLoggedIn}/>}>
+                        </Route>
+                        <Route path='/*' element={<Navigate to='/' replace={true} />} />
+                    </Route>
+                </Route>
+            </Routes>
+        </div>
+    )
 }
 
 export default App;

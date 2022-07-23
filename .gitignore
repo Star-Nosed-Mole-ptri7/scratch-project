@@ -3,3 +3,5 @@ build
 .vscode
 .env
 .env.test
+.DS_STORE
+server/uploads/
